@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="looko.looksteam.demo.dao.PlayerAchMapper">
+  <resultMap id="BaseResultMap" type="looko.looksteam.demo.entity.PlayerAch">
+    <id column="steamid" jdbcType="CHAR" property="steamid" />
+    <id column="achname" jdbcType="VARCHAR" property="achname" />
+    <result column="appid" jdbcType="INTEGER" property="appid" />
+    <result column="achieved" jdbcType="INTEGER" property="achieved" />
+    <result column="unlocktime" jdbcType="INTEGER" property="unlocktime" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="extra_varchar" jdbcType="VARCHAR" property="extraVarchar" />
+    <result column="extra_int" jdbcType="INTEGER" property="extraInt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    steamid, achname, appid, achieved, unlocktime, updatetime, extra_varchar, extra_int
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAchKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from playerach
+    where steamid = #{steamid,jdbcType=CHAR}
+      and achname = #{achname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAchKey">
+    delete from playerach
+    where steamid = #{steamid,jdbcType=CHAR}
+      and achname = #{achname,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="looko.looksteam.demo.entity.PlayerAch">
+    insert into playerach (steamid, achname, appid, 
+      achieved, unlocktime, updatetime, 
+      extra_varchar, extra_int)
+    values (#{steamid,jdbcType=CHAR}, #{achname,jdbcType=VARCHAR}, #{appid,jdbcType=INTEGER}, 
+      #{achieved,jdbcType=INTEGER}, #{unlocktime,jdbcType=INTEGER}, #{updatetime,jdbcType=VARCHAR}, 
+      #{extraVarchar,jdbcType=VARCHAR}, #{extraInt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.PlayerAch">
+    insert into playerach
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="steamid != null">
+        steamid,
+      </if>
+      <if test="achname != null">
+        achname,
+      </if>
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="achieved != null">
+        achieved,
+      </if>
+      <if test="unlocktime != null">
+        unlocktime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="extraVarchar != null">
+        extra_varchar,
+      </if>
+      <if test="extraInt != null">
+        extra_int,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="steamid != null">
+        #{steamid,jdbcType=CHAR},
+      </if>
+      <if test="achname != null">
+        #{achname,jdbcType=VARCHAR},
+      </if>
+      <if test="appid != null">
+        #{appid,jdbcType=INTEGER},
+      </if>
+      <if test="achieved != null">
+        #{achieved,jdbcType=INTEGER},
+      </if>
+      <if test="unlocktime != null">
+        #{unlocktime,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar != null">
+        #{extraVarchar,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInt != null">
+        #{extraInt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="looko.looksteam.demo.entity.PlayerAch">
+    update playerach
+    <set>
+      <if test="appid != null">
+        appid = #{appid,jdbcType=INTEGER},
+      </if>
+      <if test="achieved != null">
+        achieved = #{achieved,jdbcType=INTEGER},
+      </if>
+      <if test="unlocktime != null">
+        unlocktime = #{unlocktime,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar != null">
+        extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInt != null">
+        extra_int = #{extraInt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where steamid = #{steamid,jdbcType=CHAR}
+      and achname = #{achname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAch">
+    update playerach
+    set appid = #{appid,jdbcType=INTEGER},
+      achieved = #{achieved,jdbcType=INTEGER},
+      unlocktime = #{unlocktime,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
+      extra_int = #{extraInt,jdbcType=INTEGER}
+    where steamid = #{steamid,jdbcType=CHAR}
+      and achname = #{achname,jdbcType=VARCHAR}
+  </update>
+</mapper>

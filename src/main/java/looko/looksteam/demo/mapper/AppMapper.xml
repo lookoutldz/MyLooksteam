@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="looko.looksteam.demo.dao.AppMapper">
+  <resultMap id="BaseResultMap" type="looko.looksteam.demo.entity.App">
+    <id column="appid" jdbcType="INTEGER" property="appid" />
+    <result column="appname" jdbcType="VARCHAR" property="appname" />
+    <result column="chname" jdbcType="VARCHAR" property="chname" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="img_icon_url" jdbcType="VARCHAR" property="imgIconUrl" />
+    <result column="img_logo_url" jdbcType="VARCHAR" property="imgLogoUrl" />
+    <result column="pic_1" jdbcType="VARCHAR" property="pic1" />
+    <result column="pic_2" jdbcType="VARCHAR" property="pic2" />
+    <result column="pic_3" jdbcType="VARCHAR" property="pic3" />
+    <result column="pic_4" jdbcType="VARCHAR" property="pic4" />
+    <result column="pic_5" jdbcType="VARCHAR" property="pic5" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="extra_varchar" jdbcType="VARCHAR" property="extraVarchar" />
+    <result column="extra_int" jdbcType="INTEGER" property="extraInt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    appid, appname, chname, price, img_icon_url, img_logo_url, pic_1, pic_2, pic_3, pic_4, 
+    pic_5, updatetime, extra_varchar, extra_int
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from app
+    where appid = #{appid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from app
+    where appid = #{appid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="looko.looksteam.demo.entity.App">
+    insert into app (appid, appname, chname, 
+      price, img_icon_url, img_logo_url, 
+      pic_1, pic_2, pic_3, pic_4, 
+      pic_5, updatetime, extra_varchar, 
+      extra_int)
+    values (#{appid,jdbcType=INTEGER}, #{appname,jdbcType=VARCHAR}, #{chname,jdbcType=VARCHAR}, 
+      #{price,jdbcType=INTEGER}, #{imgIconUrl,jdbcType=VARCHAR}, #{imgLogoUrl,jdbcType=VARCHAR}, 
+      #{pic1,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, #{pic3,jdbcType=VARCHAR}, #{pic4,jdbcType=VARCHAR}, 
+      #{pic5,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, 
+      #{extraInt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.App">
+    insert into app
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="appid != null">
+        appid,
+      </if>
+      <if test="appname != null">
+        appname,
+      </if>
+      <if test="chname != null">
+        chname,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="imgIconUrl != null">
+        img_icon_url,
+      </if>
+      <if test="imgLogoUrl != null">
+        img_logo_url,
+      </if>
+      <if test="pic1 != null">
+        pic_1,
+      </if>
+      <if test="pic2 != null">
+        pic_2,
+      </if>
+      <if test="pic3 != null">
+        pic_3,
+      </if>
+      <if test="pic4 != null">
+        pic_4,
+      </if>
+      <if test="pic5 != null">
+        pic_5,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="extraVarchar != null">
+        extra_varchar,
+      </if>
+      <if test="extraInt != null">
+        extra_int,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="appid != null">
+        #{appid,jdbcType=INTEGER},
+      </if>
+      <if test="appname != null">
+        #{appname,jdbcType=VARCHAR},
+      </if>
+      <if test="chname != null">
+        #{chname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="imgIconUrl != null">
+        #{imgIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgLogoUrl != null">
+        #{imgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null">
+        #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null">
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null">
+        #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null">
+        #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null">
+        #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar != null">
+        #{extraVarchar,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInt != null">
+        #{extraInt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="looko.looksteam.demo.entity.App">
+    update app
+    <set>
+      <if test="appname != null">
+        appname = #{appname,jdbcType=VARCHAR},
+      </if>
+      <if test="chname != null">
+        chname = #{chname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="imgIconUrl != null">
+        img_icon_url = #{imgIconUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgLogoUrl != null">
+        img_logo_url = #{imgLogoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="pic1 != null">
+        pic_1 = #{pic1,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null">
+        pic_2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="pic3 != null">
+        pic_3 = #{pic3,jdbcType=VARCHAR},
+      </if>
+      <if test="pic4 != null">
+        pic_4 = #{pic4,jdbcType=VARCHAR},
+      </if>
+      <if test="pic5 != null">
+        pic_5 = #{pic5,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar != null">
+        extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInt != null">
+        extra_int = #{extraInt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where appid = #{appid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="looko.looksteam.demo.entity.App">
+    update app
+    set appname = #{appname,jdbcType=VARCHAR},
+      chname = #{chname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      img_icon_url = #{imgIconUrl,jdbcType=VARCHAR},
+      img_logo_url = #{imgLogoUrl,jdbcType=VARCHAR},
+      pic_1 = #{pic1,jdbcType=VARCHAR},
+      pic_2 = #{pic2,jdbcType=VARCHAR},
+      pic_3 = #{pic3,jdbcType=VARCHAR},
+      pic_4 = #{pic4,jdbcType=VARCHAR},
+      pic_5 = #{pic5,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
+      extra_int = #{extraInt,jdbcType=INTEGER}
+    where appid = #{appid,jdbcType=INTEGER}
+  </update>
+</mapper>
