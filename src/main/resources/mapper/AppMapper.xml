@@ -32,7 +32,7 @@
     where appid = #{appid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="looko.looksteam.demo.entity.App">
-    insert into app (appid, appname, chname, 
+    insert into app (appid, appname, chname,
       price, img_icon_url, img_logo_url, 
       pic_1, pic_2, pic_3, pic_4, 
       pic_5, updatetime, extra_varchar, 

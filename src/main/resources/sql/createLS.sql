@@ -7,7 +7,7 @@ SET utf8mb4;
 USE looksteam;
 
 CREATE TABLE player (
-	steamid CHAR (17) PRIMARY KEY NOT NULL,
+	steamid VARCHAR (17) PRIMARY KEY NOT NULL,
 	communityvisibilitystate INT,
 	profilestate INT,
 	personaname VARCHAR (255),
@@ -28,7 +28,7 @@ CREATE TABLE player (
 	loccountrycode VARCHAR (2),
 	locstatecode VARCHAR (255),
 	loccityid VARCHAR (255),
-	updatetime VARCHAR (19),
+	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT
 );
@@ -45,7 +45,7 @@ CREATE TABLE app (
 	pic_3 VARCHAR (255),
 	pic_4 VARCHAR (255),
 	pic_5 VARCHAR (255),
-	updatetime VARCHAR (19),
+	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT
 );
@@ -58,7 +58,7 @@ CREATE TABLE gameschame (
 	hidden INT,
 	icon VARCHAR (255),
 	icongray VARCHAR (255),
-	updatetime VARCHAR (19),
+	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
 	PRIMARY KEY (appid, achname),
@@ -66,14 +66,14 @@ CREATE TABLE gameschame (
 );
 
 CREATE TABLE ownedgame (
-	steamid CHAR (17) NOT NULL,
+	steamid VARCHAR (17) NOT NULL,
 	appid INT NOT NULL,
 	playtime_2week INT,
 	playtime_forever INT,
 	img_icon_url VARCHAR (255),
 	img_logo_url VARCHAR (255),
 	has_community_visible_state TINYINT (1),
-	updatetime VARCHAR (19),
+	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
 	PRIMARY KEY (steamid, appid),
@@ -82,12 +82,12 @@ CREATE TABLE ownedgame (
 );
 
 CREATE TABLE playerach (
-	steamid CHAR (17) NOT NULL,
+	steamid VARCHAR (17) NOT NULL,
 	appid INT NOT NULL,
 	achname VARCHAR (255) NOT NULL,
 	achieved INT,
 	unlocktime INT,
-	updatetime VARCHAR (19),
+	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
 	PRIMARY KEY (steamid, achname),

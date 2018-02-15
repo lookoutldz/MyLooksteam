@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <title>登入</title>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="bootstrap-3.3.7/css/bootstrap.css"/>
+
+    <link rel="stylesheet" href="css/mylogin.css" />
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="js/jquery-3.3.1.js"></script>
+
+</head>
+<body>
+    <div class="container">
+    <div class="row clearfix">
+
+        <div class="col-md-8 column">
+            <!--logo area-->
+            <div class="page-header">
+                <h1>
+                    LookSteam <small>Steam数据</small>
+                </h1>
+            </div>
+            <div class="carousel slide" id="carousel-loginpic">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-loginpic">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-loginpic">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img alt="" src="image/vanityurl.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                <!--自定义链接ID-->
+                            </h4>
+                            <p>
+                                <!--此ID是您的Steam个人页面链接里您可以自由更改的后缀部分-->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img alt="" src="image/steamid.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                <!--SteamID64-->
+                            </h4>
+                            <p>
+                                <!--又称64位SteamID，，由17位数字组成，是Steam平台里用户的唯一标识-->
+                            </p>
+                        </div>
+                    </div>
+
+                </div> <a class="left carousel-control" href="#carousel-loginpic" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-loginpic" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+
+        <div class="col-md-4 column">
+            <!--login title-->
+            <div class="page-header" id="login_header" align="center">
+                <h2>
+                    登入
+                </h2>
+            </div>
+            <div class="tabbable" id="tabs-login">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#panel-vanityurl" data-toggle="tab">  通过自定义链接ID登入  </a>
+                    </li>
+                    <li>
+                        <a href="#panel-steamid" data-toggle="tab">  通过SteamID64登入  </a>
+                    </li>
+                </ul>
+
+                <!--login area-->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="panel-vanityurl">
+                        <form class="form-horizontal" role="form" id="vanityurl_form" action="/loginController">
+                            <div class="form-group">
+                                <label for="vanityurl" class="col-sm-4 control-label">自定义链接ID</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="vanityurl" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="vanityurl_remember" />记住我</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="button" class="btn btn-default" id="vanityurl_btn">登入</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="panel-steamid">
+                        <form class="form-horizontal" role="form" id="steamid_form" action="/loginController">
+                            <div class="form-group">
+                                <label for="steamid" class="col-sm-4 control-label">SteamID64</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="steamid" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" id="steamid_remember" />记住我</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <button type="button" class="btn btn-default" id="steamid_btn">登入</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="js/popper.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="bootstrap-3.3.7/js/bootstrap.js"></script>
+
+    <script src="js/mylogin.js"></script>
+</body>
+</html>
