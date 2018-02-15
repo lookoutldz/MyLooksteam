@@ -30,7 +30,7 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public App searchByID(int appid) {
-        return null;
+        return appMapper.selectByPrimaryKey(appid);
     }
 
     @Override
