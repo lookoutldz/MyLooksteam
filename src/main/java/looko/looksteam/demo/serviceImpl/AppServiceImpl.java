@@ -34,7 +34,7 @@ public class AppServiceImpl implements AppService {
     }
 
     @Override
-    public List<App> searchByName(String appname) {
-        return null;
+    public List<App> searchByAppname(String appname) {
+        return appMapper.selectByAppname(appname);
     }
 }

@@ -1,4 +1,4 @@
-package looko.looksteam.demo.api.aSteamApps;
+package looko.looksteam.demo.api;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

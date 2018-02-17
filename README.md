@@ -4,4 +4,6 @@
 - -！！！
 
 工具类写入（初步）\
-表的建立和完善,dao,entity和mapper的初步编写
+表的建立和完善,dao,entity和mapper的初步编写\
+增加几个API\
+登录页面编写，配合部分API测试

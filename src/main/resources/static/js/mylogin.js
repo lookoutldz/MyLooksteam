@@ -31,34 +31,11 @@ $(function (){
             data : "steamid=" + steamid,
             success : function (result) {
 
-                //$('#loadingmsg').remove();
-                if (result==null || result==""){
-                    var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>连接失败</div>");
-                }
-                else{
-
-                    var players = $.parseJSON(result);
-                    if (jQuery.isEmptyObject(players)) {
-                        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户不存在</div>");
-                    }
-                    else{
-                        var visible_status = players[0].communityvisibilitystate;
-                        if (visible_status==1){
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料私密</div>");
-                        }
-                        else if (visible_status==2) {
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料仅好友可见</div>");
-                        }
-                        else if (visible_status==3){
-
-                            $('#steamid_form').submit();
-                        }
-                        else {
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料不可见!状态码:"+visible_status+"</div>");
-                        }
-                    }
-                }
-                $('#steamid_btn').parent().parent().append(alarmmsg);
+                $('#steamid').val(steamid);
+                var btn = $('#steamid_btn');
+                var form = $('#steamid_form');
+                var remember = $('#steamid_remember');
+                checkout(result, form, btn, remember);
             },
             error : function (jqXHR, textStatus, errorMsg) {
                 alert("哎呀!");
@@ -72,36 +49,11 @@ $(function (){
             url : "/steamidcheck",
             data : "vanityurl=" + vanityurl,
             success : function (result) {
-
-                //$('#loadingmsg').remove();
-                if (result==null || result==""){
-                    var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>连接失败</div>");
-                }
-                else{
-
-                    var players = $.parseJSON(result);
-                    if (jQuery.isEmptyObject(players)) {
-                        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户不存在</div>");
-                    }
-                    else{
-                        var visible_status = players[0].communityvisibilitystate;
-                        if (visible_status==1){
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料私密</div>");
-                        }
-                        else if (visible_status==2) {
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料仅好友可见</div>");
-                        }
-                        else if (visible_status==3){
-
-                            $('#vanityurl_form').submit();
-
-                        }
-                        else {
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料不可见!状态码:"+visible_status+"</div>");
-                        }
-                    }
-                }
-                $('#vanityurl_btn').parent().parent().append(alarmmsg);
+                $('#vanityurl').val(vanityurl);
+                var form = $('#vanityurl_form');
+                var btn = $('#vanityurl_btn');
+                var remember = $('#vanityurl_remember');
+                checkout(result, form, btn, remember);
             },
             error : function (jqXHR, textStatus, errorMsg) {
                 alert("哎呀!");
@@ -118,7 +70,6 @@ $(document).ready(function () {
     //通过steamid64登录的验证
     $('#steamid_btn').click(function () {
         var steamid = $('#steamid').val();
-
         var regex = /\d{17}/;
         if (regex.test(steamid)){
             var loading = $("<div class=\"col-sm-offset-4 col-sm-8\" style='margin-top: 20px;' id='loadingmsg'>加载中...</div>");
@@ -128,37 +79,11 @@ $(document).ready(function () {
                 url : "/steamidcheck",
                 data : "steamid=" + steamid,
                 success : function (result) {
-
                     $('#loadingmsg').remove();
-                    if (result==null || result==""){
-                        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>连接失败</div>");
-                    }
-                    else{
-                        var players = $.parseJSON(result);
-                        if (jQuery.isEmptyObject(players)) {
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户不存在</div>");
-                        }
-                        else{
-                            var visible_status = players[0].communityvisibilitystate;
-                            if (visible_status==1){
-                                var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料私密</div>");
-                            }
-                            else if (visible_status==2) {
-                                var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料仅好友可见</div>");
-                            }
-                            else if (visible_status==3){
-
-                                if ($('#steamid_remember').prop("checked")){
-                                    $.cookie("steamid",steamid);
-                                }
-                                $('#steamid_form').submit();
-                            }
-                            else {
-                                var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料不可见!状态码:"+visible_status+"</div>");
-                            }
-                        }
-                    }
-                    $('#steamid_btn').parent().parent().append(alarmmsg);
+                    var btn = $('#steamid_btn');
+                    var form = $('#steamid_form');
+                    var remember = $('#steamid_remember');
+                    checkout(result, form, btn, remember);
                 },
                 error : function (jqXHR, textStatus, errorMsg) {
                     alert("哎呀!");
@@ -185,35 +110,10 @@ $(document).ready(function () {
                 data : "vanityurl=" + vanityurl,
                 success : function (result) {
                     $('#loadingmsg').remove();
-                    if (result==null || result==""){
-                        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>连接失败</div>");
-                    }
-                    else{
-                        var players = $.parseJSON(result);
-                        if (jQuery.isEmptyObject(players)) {
-                            var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户不存在</div>");
-                        }
-                        else{
-                            var visible_status = players[0].communityvisibilitystate;
-                            if (visible_status==1){
-                                var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料私密</div>");
-                            }
-                            else if (visible_status==2) {
-                                var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料仅好友可见</div>");
-                            }
-                            else if (visible_status==3){
-
-                                if ($("#vanityurl_remember").prop("checked")){
-                                    $.cookie("vanityurl", vanityurl);
-                                }
-                                $('#vanityurl_form').submit();
-                            }
-                            else {
-                                var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料不可见!状态码:"+visible_status+"</div>");
-                            }
-                        }
-                    }
-                    $('#vanityurl_btn').parent().parent().append(alarmmsg);
+                    var form = $('#vanityurl_form');
+                    var btn = $('#vanityurl_btn');
+                    var remember = $('#vanityurl_remember');
+                    checkout(result, form, btn, remember);
                 },
                 error : function (jqXHR, textStatus, errorMsg) {
                     alert("哎呀!");
@@ -227,3 +127,39 @@ $(document).ready(function () {
     })
 });
 
+function checkout(player, form, btn, remember) {
+
+    var visible_status = player.communityvisibilitystate;
+    if (visible_status==1){
+        // 该用户资料私密
+        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料私密</div>");
+    }
+    else if (visible_status==2){
+        // 该用户资料仅好友可见
+        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户资料仅好友可见</div>");
+    }
+    else if (visible_status==3){
+        //验证通过，处理cookie，提交表单
+        if (remember.prop("checked")){
+            if (form.prop("id")=="steamid_form"){
+                var steamid = $('#steamid').val();
+                $.cookie("steamid", steamid);
+            }
+            else {
+                var vanityurl = $('#vanityurl').val();
+                $.cookie("vanityurl", vanityurl);
+            }
+        }
+        form.submit();
+    }
+    else if (visible_status==-1) {
+        // 该用户不存在
+        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>对不起，该用户不存在</div>");
+    }
+    else{
+        // 连接失败
+        var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>连接失败</div>");
+    }
+
+    btn.parent().parent().append(alarmmsg);
+}
