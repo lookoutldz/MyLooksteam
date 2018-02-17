@@ -13,9 +13,7 @@ public interface AppMapper {
 
     App selectByPrimaryKey(Integer appid);
 
-    List<App> selectByAppname(String appname);
-
-    List<App> selectByChname(String chname);
+    List<App> selectByAppname(String appnamae);
 
     int updateByPrimaryKeySelective(App record);
 

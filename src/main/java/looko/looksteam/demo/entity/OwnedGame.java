@@ -1,6 +1,8 @@
 package looko.looksteam.demo.entity;
 
 public class OwnedGame extends OwnedGameKey {
+    private String appname;
+
     private Integer playtime2week;
 
     private Integer playtimeForever;
@@ -16,6 +18,14 @@ public class OwnedGame extends OwnedGameKey {
     private String extraVarchar;
 
     private Integer extraInt;
+
+    public String getAppname() {
+        return appname;
+    }
+
+    public void setAppname(String appname) {
+        this.appname = appname == null ? null : appname.trim();
+    }
 
     public Integer getPlaytime2week() {
         return playtime2week;

@@ -61,13 +61,13 @@ CREATE TABLE gameschame (
 	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
-	PRIMARY KEY (appid, achname),
-	FOREIGN KEY (appid) REFERENCES app (appid)
+	PRIMARY KEY (appid, achname)
 );
 
 CREATE TABLE ownedgame (
 	steamid VARCHAR (17) NOT NULL,
 	appid INT NOT NULL,
+	appname VARCHAR(255),
 	playtime_2week INT,
 	playtime_forever INT,
 	img_icon_url VARCHAR (255),
@@ -76,9 +76,7 @@ CREATE TABLE ownedgame (
 	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
-	PRIMARY KEY (steamid, appid),
-	FOREIGN KEY (steamid) REFERENCES player (steamid),
-	FOREIGN KEY (appid) REFERENCES app (appid)
+	PRIMARY KEY (steamid, appid)
 );
 
 CREATE TABLE playerach (
@@ -90,7 +88,5 @@ CREATE TABLE playerach (
 	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
-	PRIMARY KEY (steamid, achname),
-	FOREIGN KEY (steamid) REFERENCES player (steamid),
-	FOREIGN KEY (appid) REFERENCES app (appid)
+	PRIMARY KEY (steamid, achname)
 );

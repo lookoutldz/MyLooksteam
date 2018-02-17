@@ -19,7 +19,7 @@ public class LogInOutController {
             return "error";
         if (steamid == null)
             steamid = new ResolveVanityURL().resolveToSteamID(vanityurl);
-        return "profile";
+        return "games";
     }
 
 }

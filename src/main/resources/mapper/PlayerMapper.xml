@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="looko.looksteam.demo.dao.PlayerMapper">
   <resultMap id="BaseResultMap" type="looko.looksteam.demo.entity.Player">
-    <id column="steamid" jdbcType="CHAR" property="steamid" />
+    <id column="steamid" jdbcType="VARCHAR" property="steamid" />
     <result column="communityvisibilitystate" jdbcType="INTEGER" property="communityvisibilitystate" />
     <result column="profilestate" jdbcType="INTEGER" property="profilestate" />
     <result column="personaname" jdbcType="VARCHAR" property="personaname" />
@@ -37,31 +37,31 @@
     select 
     <include refid="Base_Column_List" />
     from player
-    where steamid = #{steamid,jdbcType=CHAR}
+    where steamid = #{steamid,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from player
-    where steamid = #{steamid,jdbcType=CHAR}
+    where steamid = #{steamid,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="looko.looksteam.demo.entity.Player">
-    insert into player (steamid, communityvisibilitystate, profilestate, 
-      personaname, lastlogoff, commentpermission, 
-      profileurl, avatar, avatarmedium, 
-      avatarfull, personastate, realname, 
-      primaryclanid, timecreated, personastateflags, 
-      gameextrainfo, gameserverip, gameid, 
-      loccountrycode, locstatecode, loccityid, 
-      updatetime, extra_varchar, extra_int
-      )
-    values (#{steamid,jdbcType=CHAR}, #{communityvisibilitystate,jdbcType=INTEGER}, #{profilestate,jdbcType=INTEGER}, 
-      #{personaname,jdbcType=VARCHAR}, #{lastlogoff,jdbcType=INTEGER}, #{commentpermission,jdbcType=INTEGER}, 
-      #{profileurl,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, #{avatarmedium,jdbcType=VARCHAR}, 
-      #{avatarfull,jdbcType=VARCHAR}, #{personastate,jdbcType=INTEGER}, #{realname,jdbcType=VARCHAR}, 
-      #{primaryclanid,jdbcType=VARCHAR}, #{timecreated,jdbcType=INTEGER}, #{personastateflags,jdbcType=INTEGER}, 
-      #{gameextrainfo,jdbcType=VARCHAR}, #{gameserverip,jdbcType=VARCHAR}, #{gameid,jdbcType=INTEGER}, 
-      #{loccountrycode,jdbcType=VARCHAR}, #{locstatecode,jdbcType=VARCHAR}, #{loccityid,jdbcType=VARCHAR}, 
-      #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, #{extraInt,jdbcType=INTEGER}
-      )
+    insert into player (steamid, communityvisibilitystate, 
+      profilestate, personaname, lastlogoff, 
+      commentpermission, profileurl, avatar, 
+      avatarmedium, avatarfull, personastate, 
+      realname, primaryclanid, timecreated, 
+      personastateflags, gameextrainfo, gameserverip, 
+      gameid, loccountrycode, locstatecode, 
+      loccityid, updatetime, extra_varchar, 
+      extra_int)
+    values (#{steamid,jdbcType=VARCHAR}, #{communityvisibilitystate,jdbcType=INTEGER}, 
+      #{profilestate,jdbcType=INTEGER}, #{personaname,jdbcType=VARCHAR}, #{lastlogoff,jdbcType=INTEGER}, 
+      #{commentpermission,jdbcType=INTEGER}, #{profileurl,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{avatarmedium,jdbcType=VARCHAR}, #{avatarfull,jdbcType=VARCHAR}, #{personastate,jdbcType=INTEGER}, 
+      #{realname,jdbcType=VARCHAR}, #{primaryclanid,jdbcType=VARCHAR}, #{timecreated,jdbcType=INTEGER}, 
+      #{personastateflags,jdbcType=INTEGER}, #{gameextrainfo,jdbcType=VARCHAR}, #{gameserverip,jdbcType=VARCHAR}, 
+      #{gameid,jdbcType=INTEGER}, #{loccountrycode,jdbcType=VARCHAR}, #{locstatecode,jdbcType=VARCHAR}, 
+      #{loccityid,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, 
+      #{extraInt,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.Player">
     insert into player
@@ -141,7 +141,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="steamid != null">
-        #{steamid,jdbcType=CHAR},
+        #{steamid,jdbcType=VARCHAR},
       </if>
       <if test="communityvisibilitystate != null">
         #{communityvisibilitystate,jdbcType=INTEGER},
@@ -287,7 +287,7 @@
         extra_int = #{extraInt,jdbcType=INTEGER},
       </if>
     </set>
-    where steamid = #{steamid,jdbcType=CHAR}
+    where steamid = #{steamid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="looko.looksteam.demo.entity.Player">
     update player
@@ -314,6 +314,6 @@
       updatetime = #{updatetime,jdbcType=VARCHAR},
       extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
       extra_int = #{extraInt,jdbcType=INTEGER}
-    where steamid = #{steamid,jdbcType=CHAR}
+    where steamid = #{steamid,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -17,39 +17,28 @@
     <result column="extra_varchar" jdbcType="VARCHAR" property="extraVarchar" />
     <result column="extra_int" jdbcType="INTEGER" property="extraInt" />
   </resultMap>
-
   <sql id="Base_Column_List">
     appid, appname, chname, price, img_icon_url, img_logo_url, pic_1, pic_2, pic_3, pic_4, 
     pic_5, updatetime, extra_varchar, extra_int
   </sql>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from app
     where appid = #{appid,jdbcType=INTEGER}
   </select>
-
   <select id="selectByAppname" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from app
     where appname LIKE #{appname,jdbcType=VARCHAR}
   </select>
-
-  <select id="selectByChname" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from app
-    where chname LIKE #{chname,jdbcType=VARCHAR}
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from app
     where appid = #{appid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="looko.looksteam.demo.entity.App">
-    insert into app (appid, appname, chname,
+    insert into app (appid, appname, chname, 
       price, img_icon_url, img_logo_url, 
       pic_1, pic_2, pic_3, pic_4, 
       pic_5, updatetime, extra_varchar, 
