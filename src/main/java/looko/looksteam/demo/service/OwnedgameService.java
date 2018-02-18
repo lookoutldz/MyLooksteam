@@ -1,6 +1,5 @@
 package looko.looksteam.demo.service;
 
-import looko.looksteam.demo.entity.MyGame;
 import looko.looksteam.demo.entity.OwnedGame;
 
 import java.util.List;

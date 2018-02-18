@@ -1,6 +1,7 @@
 package looko.looksteam.demo.dao;
 
-import looko.looksteam.demo.entity.MyGame;
+import looko.looksteam.demo.entity.MyGameKey;
+import looko.looksteam.demo.entity.MyGameTimeKey;
 import looko.looksteam.demo.entity.OwnedGame;
 import looko.looksteam.demo.entity.OwnedGameKey;
 
@@ -19,7 +20,11 @@ public interface OwnedGameMapper {
 
     List<OwnedGame> selectBySteamid(String steamid);
 
-    List<OwnedGame> selectBySteamidAppname(MyGame key);
+    List<OwnedGame> selectBySteamidAppname(MyGameKey key);
+
+    List<OwnedGame> selectFavorite(String steamid);
+
+    List<OwnedGame> selectNotPlay(String steamid);
 
     int updateByPrimaryKeySelective(OwnedGame record);
 

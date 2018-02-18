@@ -1,9 +1,9 @@
 package looko.looksteam.demo.serviceImpl;
 
 import looko.looksteam.demo.dao.OwnedGameMapper;
-import looko.looksteam.demo.entity.MyGame;
+import looko.looksteam.demo.entity.MyGameKey;
+import looko.looksteam.demo.entity.MyGameTimeKey;
 import looko.looksteam.demo.entity.OwnedGame;
-import looko.looksteam.demo.entity.OwnedGameKey;
 import looko.looksteam.demo.service.OwnedgameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,19 +40,19 @@ public class OwnedgameServiceImpl implements OwnedgameService {
 
     @Override
     public List<OwnedGame> getOwnedgames_favorite(String steamid) {
-        return null;
+        return ownedGameMapper.selectFavorite(steamid);
     }
 
     @Override
     public List<OwnedGame> getOwnedgames_notplay(String steamid) {
-        return null;
+        return ownedGameMapper.selectNotPlay(steamid);
     }
 
     @Override
     public List<OwnedGame> searchMyGames(String steamid, String appname) {
-        MyGame myGame = new MyGame();
-        myGame.setSteamid(steamid);
-        myGame.setAppname("%"+appname+"%");
-        return ownedGameMapper.selectBySteamidAppname(myGame);
+        MyGameKey myGameKey = new MyGameKey();
+        myGameKey.setSteamid(steamid);
+        myGameKey.setAppname("%"+appname+"%");
+        return ownedGameMapper.selectBySteamidAppname(myGameKey);
     }
 }

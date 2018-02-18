@@ -18,7 +18,7 @@ public class PageURLController {
 
     @RequestMapping("/")
     public String indexPage(Model model){
-        Player player = playerService.showPlayers("76561198367830998");
+        Player player = playerService.selectPlayer("76561198367830998");
         model.addAttribute("player", player);
         return "index";
     }

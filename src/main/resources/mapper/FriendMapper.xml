@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="looko.looksteam.demo.dao.FriendMapper">
+  <resultMap id="BaseResultMap" type="looko.looksteam.demo.entity.Friend">
+    <id column="steamid" jdbcType="VARCHAR" property="steamid" />
+    <id column="friendsteamid" jdbcType="VARCHAR" property="friendsteamid" />
+    <result column="relationship" jdbcType="VARCHAR" property="relationship" />
+    <result column="friend_since" jdbcType="INTEGER" property="friendSince" />
+    <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
+    <result column="extra_varchar" jdbcType="VARCHAR" property="extraVarchar" />
+    <result column="extra_int" jdbcType="INTEGER" property="extraInt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    steamid, friendsteamid, relationship, friend_since, updatetime, extra_varchar, extra_int
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="looko.looksteam.demo.entity.FriendKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from friend
+    where steamid = #{steamid,jdbcType=VARCHAR}
+      and friendsteamid = #{friendsteamid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectMyFriends" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from friend
+    where steamid = #{steamid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectMyFriendsByTime" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from friend
+    where steamid = #{steamid,jdbcType=VARCHAR}
+    ORDER BY friend_since ASC
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="looko.looksteam.demo.entity.FriendKey">
+    delete from friend
+    where steamid = #{steamid,jdbcType=VARCHAR}
+      and friendsteamid = #{friendsteamid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="looko.looksteam.demo.entity.Friend">
+    insert into friend (steamid, friendsteamid, relationship, 
+      friend_since, updatetime, extra_varchar, 
+      extra_int)
+    values (#{steamid,jdbcType=VARCHAR}, #{friendsteamid,jdbcType=VARCHAR}, #{relationship,jdbcType=VARCHAR}, 
+      #{friendSince,jdbcType=INTEGER}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, 
+      #{extraInt,jdbcType=INTEGER})
+  </insert>
+  <insert id="replace" parameterType="looko.looksteam.demo.entity.Friend">
+    REPLACE into friend (steamid, friendsteamid, relationship,
+      friend_since, updatetime, extra_varchar,
+      extra_int)
+    values (#{steamid,jdbcType=VARCHAR}, #{friendsteamid,jdbcType=VARCHAR}, #{relationship,jdbcType=VARCHAR},
+      #{friendSince,jdbcType=INTEGER}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR},
+      #{extraInt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.Friend">
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="steamid != null">
+        steamid,
+      </if>
+      <if test="friendsteamid != null">
+        friendsteamid,
+      </if>
+      <if test="relationship != null">
+        relationship,
+      </if>
+      <if test="friendSince != null">
+        friend_since,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="extraVarchar != null">
+        extra_varchar,
+      </if>
+      <if test="extraInt != null">
+        extra_int,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="steamid != null">
+        #{steamid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendsteamid != null">
+        #{friendsteamid,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="friendSince != null">
+        #{friendSince,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar != null">
+        #{extraVarchar,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInt != null">
+        #{extraInt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="looko.looksteam.demo.entity.Friend">
+    update friend
+    <set>
+      <if test="relationship != null">
+        relationship = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="friendSince != null">
+        friend_since = #{friendSince,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="extraVarchar != null">
+        extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInt != null">
+        extra_int = #{extraInt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where steamid = #{steamid,jdbcType=VARCHAR}
+      and friendsteamid = #{friendsteamid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="looko.looksteam.demo.entity.Friend">
+    update friend
+    set relationship = #{relationship,jdbcType=VARCHAR},
+      friend_since = #{friendSince,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=VARCHAR},
+      extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
+      extra_int = #{extraInt,jdbcType=INTEGER}
+    where steamid = #{steamid,jdbcType=VARCHAR}
+      and friendsteamid = #{friendsteamid,jdbcType=VARCHAR}
+  </update>
+</mapper>

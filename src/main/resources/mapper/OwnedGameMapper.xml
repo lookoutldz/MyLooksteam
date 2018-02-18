@@ -26,13 +26,27 @@
     where steamid = #{steamid,jdbcType=VARCHAR}
       and appid = #{appid,jdbcType=INTEGER}
   </select>
-  <select id="selectBySteamid" parameterType="looko.looksteam.demo.entity.OwnedGameKey" resultMap="BaseResultMap">
+  <select id="selectBySteamid" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from ownedgame
     where steamid = #{steamid,jdbcType=VARCHAR}
   </select>
-  <select id="selectBySteamidAppname" parameterType="looko.looksteam.demo.entity.MyGame" resultMap="BaseResultMap">
+  <select id="selectFavorite" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ownedgame
+    where steamid = #{steamid,jdbcType=VARCHAR}
+    ORDER BY playtime_forever DESC
+  </select>
+  <select id="selectNotPlay" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ownedgame
+    where steamid = #{steamid,jdbcType=VARCHAR}
+    AND playtime_forever = 0
+  </select>
+  <select id="selectBySteamidAppname" parameterType="looko.looksteam.demo.entity.MyGameKey" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from ownedgame

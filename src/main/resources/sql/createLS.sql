@@ -7,7 +7,7 @@ SET utf8mb4;
 USE looksteam;
 
 CREATE TABLE player (
-	steamid VARCHAR (17) PRIMARY KEY NOT NULL,
+	steamid VARCHAR (255) PRIMARY KEY NOT NULL,
 	communityvisibilitystate INT,
 	profilestate INT,
 	personaname VARCHAR (255),
@@ -65,7 +65,7 @@ CREATE TABLE gameschame (
 );
 
 CREATE TABLE ownedgame (
-	steamid VARCHAR (17) NOT NULL,
+	steamid VARCHAR (255) NOT NULL,
 	appid INT NOT NULL,
 	appname VARCHAR(255),
 	playtime_2week INT,
@@ -80,7 +80,7 @@ CREATE TABLE ownedgame (
 );
 
 CREATE TABLE playerach (
-	steamid VARCHAR (17) NOT NULL,
+	steamid VARCHAR (255) NOT NULL,
 	appid INT NOT NULL,
 	achname VARCHAR (255) NOT NULL,
 	achieved INT,
@@ -90,3 +90,14 @@ CREATE TABLE playerach (
 	extra_int INT,
 	PRIMARY KEY (steamid, achname)
 );
+
+CREATE TABLE friend (
+	steamid VARCHAR (255) NOT NULL,
+	friendsteamid VARCHAR (255) NOT NULL,
+	relationship VARCHAR (255),
+	friend_since INT,
+	updatetime VARCHAR (255),
+	extra_varchar VARCHAR (255),
+	extra_int INT,
+	PRIMARY KEY (steamid, friendsteamid)
+)

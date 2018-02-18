@@ -1,19 +1,17 @@
 package looko.looksteam.demo;
 
-import looko.looksteam.demo.api.GetAppList;
-import looko.looksteam.demo.api.GetOwnedGame;
-import looko.looksteam.demo.api.GetSteamLevel;
-import looko.looksteam.demo.api.GetPlayerSummaries;
+import looko.looksteam.demo.api.*;
+import looko.looksteam.demo.dao.FriendMapper;
 import looko.looksteam.demo.entity.App;
-import looko.looksteam.demo.entity.MyGame;
+import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.entity.OwnedGame;
 import looko.looksteam.demo.entity.Player;
 import looko.looksteam.demo.service.AppService;
+import looko.looksteam.demo.service.FriendService;
 import looko.looksteam.demo.service.OwnedgameService;
-import org.hibernate.validator.constraints.br.TituloEleitoral;
+import looko.looksteam.demo.service.PlayerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -29,7 +27,13 @@ public class DemoApplicationTests {
 	private AppService appService;
 
 	@Autowired
+	private PlayerService playerService;
+
+	@Autowired
 	private OwnedgameService ownedgameService;
+
+	@Autowired
+	private FriendService friendService;
 
 	@Test
 	public void contextLoads() {
@@ -71,6 +75,11 @@ public class DemoApplicationTests {
 	}
 
 	@Test
+	public void test_updatePlayer(){
+		playerService.updatePlayer(new GetPlayerSummaries().getAsPlayer("76561198367830998"));
+	}
+
+	@Test
 	public void test_updateOwnedgame(){
 		List<OwnedGame> ownedGames = new GetOwnedGame().getAsOwnedGames("76561198367830998");
 		System.out.println(ownedgameService.updateOwnedgames(ownedGames));
@@ -88,7 +97,32 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	public void test_log4j2 (){
+	public void test_selectFavorite(){
+		List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_favorite("76561198367830998");
+		if (ownedGames.size() > 0){
+			for (OwnedGame ownedGame : ownedGames){
+				System.out.println(ownedGame.getAppid() + " : " + ownedGame.getAppname());
+			}
+		}
+	}
+
+	@Test
+	public void test_selectNotPlay(){
+		List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_notplay("76561198367830998");
+		if (ownedGames.size() > 0){
+			for (OwnedGame ownedGame : ownedGames){
+				System.out.println(ownedGame.getAppid() + " : " + ownedGame.getAppname());
+			}
+		}
+	}
+
+	@Test
+	public void test_updateFriend (){
+		//System.out.println(friendService.updateFriends(new GetFriendList().getAsFriends("76561198367830998")));
+		List<Friend> friends = friendService.getMyFriendsByTime("76561198367830998");
+		for (Friend friend : friends){
+			System.out.println(friend.getFriendsteamid()+" : "+friend.getFriendSince());
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 package looko.looksteam.demo.entity;
 
-public class MyGame {
+public class MyGameKey {
 
     private String steamid;
     private String appname;

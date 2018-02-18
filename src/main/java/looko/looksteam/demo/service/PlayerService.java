@@ -5,5 +5,7 @@ import org.springframework.stereotype.Service;
 
 public interface PlayerService {
 
-    public Player showPlayers(String steamid);
+    int updatePlayer(Player player);
+
+    Player selectPlayer(String steamid);
 }

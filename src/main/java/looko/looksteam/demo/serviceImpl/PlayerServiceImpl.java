@@ -13,7 +13,12 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerMapper playerMapper;
 
     @Override
-    public Player showPlayers(String steamid) {
+    public int updatePlayer(Player player) {
+        return playerMapper.replace(player);
+    }
+
+    @Override
+    public Player selectPlayer(String steamid) {
         return playerMapper.selectByPrimaryKey(steamid);
     }
 }
