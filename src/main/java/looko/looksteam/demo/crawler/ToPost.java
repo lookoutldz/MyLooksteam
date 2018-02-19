@@ -3,6 +3,8 @@ package looko.looksteam.demo.crawler;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 
 public class ToPost {
@@ -14,7 +16,9 @@ public class ToPost {
             if ((location != null) && !location.equals("")){
 
                 URL url = new URL(location);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                InetSocketAddress addr = new InetSocketAddress("127.0.0.1",1080);
+                Proxy proxy = new Proxy(Proxy.Type.HTTP,addr);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection(proxy);
                 con.setConnectTimeout(20000);
                 con.setReadTimeout(20000);
                 con.setUseCaches(false);

@@ -151,7 +151,7 @@ public class DemoApplicationTests {
 	public void test_updateAppAndAppPic(){
 
 		//System.out.println(appService.updateApps(new GetAppList().getAsApps()));
-//		List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_all("76561198328486894");
+//		List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_all("76561198267348529");
 //		System.out.println(appService.updateAppsPic(ownedGames));
 		List<OwnedGame> ownedGames2 = ownedgameService.getOwnedgames_all("76561198267348529");
 		System.out.println(appService.updateAppsPic(ownedGames2));

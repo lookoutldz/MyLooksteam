@@ -57,13 +57,23 @@ public class HTMLs {
 
         List<String> results = new ArrayList<>();
         for (String str : str2) {
-
-            String regex = "(?<=url=)[a-z0-9A-Z_./:?&\\ \t\n\r\"<>=-]*?(?=\")";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(str);
-            while (matcher.find()){
-                //System.out.println(matcher.group(0));
-                results.add(matcher.group(0));
+            if (str.contains("linkfilter")){
+                String regex = "(?<=url=)[a-z0-9A-Z_./:?&\\ \t\n\r\"<>=-]*?(?=\")";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(str);
+                while (matcher.find()){
+                    System.out.println(matcher.group(0));
+                    results.add(matcher.group(0));
+                }
+            }
+            else{
+                String regex = "(?<=href=\")[a-z0-9A-Z_./:?&\\ \t\n\r\"<>=-]*?(?=\")";
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(str);
+                while (matcher.find()){
+                    System.out.println(matcher.group(0));
+                    results.add(matcher.group(0));
+                }
             }
         }
         //System.out.println("catch_2 over");

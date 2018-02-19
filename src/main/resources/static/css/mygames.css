@@ -1,0 +1,22 @@
+#avatar{
+    margin-top: 100px;
+}
+
+#float_left_bar{
+    position: fixed;
+}
+#left_nav{
+    margin-top: 30px;
+    list-style: none;
+    padding: 0;
+}
+
+#left_nav li{
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#middle_column{
+    padding-top: 10px;
+}
