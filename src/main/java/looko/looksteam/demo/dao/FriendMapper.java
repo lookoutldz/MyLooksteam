@@ -12,8 +12,6 @@ public interface FriendMapper {
 
     int insertSelective(Friend record);
 
-    int replace(Friend record);
-
     Friend selectByPrimaryKey(FriendKey key);
 
     List<Friend> selectMyFriends(String steamid);

@@ -49,6 +49,7 @@
       #{pic5,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, 
       #{extraInt,jdbcType=INTEGER})
   </insert>
+
   <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.App">
     insert into app
     <trim prefix="(" suffix=")" suffixOverrides=",">

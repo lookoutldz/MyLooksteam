@@ -14,11 +14,19 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public int updatePlayer(Player player) {
-        return playerMapper.replace(player);
+        int row = 0;
+        if (null != player){
+            if (null != playerMapper.selectByPrimaryKey(player.getSteamid()))
+                row += playerMapper.updateByPrimaryKey(player);
+            else
+                row += playerMapper.insert(player);
+        }
+        return row;
     }
 
     @Override
     public Player selectPlayer(String steamid) {
+
         return playerMapper.selectByPrimaryKey(steamid);
     }
 }

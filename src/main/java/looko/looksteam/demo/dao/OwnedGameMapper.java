@@ -14,8 +14,6 @@ public interface OwnedGameMapper {
 
     int insertSelective(OwnedGame record);
 
-    int replace(OwnedGame record);
-
     OwnedGame selectByPrimaryKey(OwnedGameKey key);
 
     List<OwnedGame> selectBySteamid(String steamid);

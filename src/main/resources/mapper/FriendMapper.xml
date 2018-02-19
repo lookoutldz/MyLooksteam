@@ -48,14 +48,7 @@
       #{friendSince,jdbcType=INTEGER}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, 
       #{extraInt,jdbcType=INTEGER})
   </insert>
-  <insert id="replace" parameterType="looko.looksteam.demo.entity.Friend">
-    REPLACE into friend (steamid, friendsteamid, relationship,
-      friend_since, updatetime, extra_varchar,
-      extra_int)
-    values (#{steamid,jdbcType=VARCHAR}, #{friendsteamid,jdbcType=VARCHAR}, #{relationship,jdbcType=VARCHAR},
-      #{friendSince,jdbcType=INTEGER}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR},
-      #{extraInt,jdbcType=INTEGER})
-  </insert>
+
   <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.Friend">
     insert into friend
     <trim prefix="(" suffix=")" suffixOverrides=",">

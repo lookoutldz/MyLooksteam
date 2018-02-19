@@ -63,26 +63,7 @@
       #{loccityid,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR}, 
       #{extraInt,jdbcType=INTEGER})
   </insert>
-  <insert id="replace" parameterType="looko.looksteam.demo.entity.Player">
-    REPLACE into player (steamid, communityvisibilitystate,
-      profilestate, personaname, lastlogoff,
-      commentpermission, profileurl, avatar,
-      avatarmedium, avatarfull, personastate,
-      realname, primaryclanid, timecreated,
-      personastateflags, gameextrainfo, gameserverip,
-      gameid, loccountrycode, locstatecode,
-      loccityid, updatetime, extra_varchar,
-      extra_int)
-    values (#{steamid,jdbcType=VARCHAR}, #{communityvisibilitystate,jdbcType=INTEGER},
-      #{profilestate,jdbcType=INTEGER}, #{personaname,jdbcType=VARCHAR}, #{lastlogoff,jdbcType=INTEGER},
-      #{commentpermission,jdbcType=INTEGER}, #{profileurl,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
-      #{avatarmedium,jdbcType=VARCHAR}, #{avatarfull,jdbcType=VARCHAR}, #{personastate,jdbcType=INTEGER},
-      #{realname,jdbcType=VARCHAR}, #{primaryclanid,jdbcType=VARCHAR}, #{timecreated,jdbcType=INTEGER},
-      #{personastateflags,jdbcType=INTEGER}, #{gameextrainfo,jdbcType=VARCHAR}, #{gameserverip,jdbcType=VARCHAR},
-      #{gameid,jdbcType=INTEGER}, #{loccountrycode,jdbcType=VARCHAR}, #{locstatecode,jdbcType=VARCHAR},
-      #{loccityid,jdbcType=VARCHAR}, #{updatetime,jdbcType=VARCHAR}, #{extraVarchar,jdbcType=VARCHAR},
-      #{extraInt,jdbcType=INTEGER})
-  </insert>
+
   <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.Player">
     insert into player
     <trim prefix="(" suffix=")" suffixOverrides=",">

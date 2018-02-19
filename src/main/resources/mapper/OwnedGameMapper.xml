@@ -70,16 +70,7 @@
       #{imgLogoUrl,jdbcType=VARCHAR}, #{hasCommunityVisibleState,jdbcType=BIT}, #{updatetime,jdbcType=VARCHAR}, 
       #{extraVarchar,jdbcType=VARCHAR}, #{extraInt,jdbcType=INTEGER})
   </insert>
-  <insert id="replace" parameterType="looko.looksteam.demo.entity.OwnedGame">
-    REPLACE into ownedgame (steamid, appid, appname,
-      playtime_2week, playtime_forever, img_icon_url,
-      img_logo_url, has_community_visible_state, updatetime,
-      extra_varchar, extra_int)
-    values (#{steamid,jdbcType=VARCHAR}, #{appid,jdbcType=INTEGER}, #{appname,jdbcType=VARCHAR},
-      #{playtime2week,jdbcType=INTEGER}, #{playtimeForever,jdbcType=INTEGER}, #{imgIconUrl,jdbcType=VARCHAR},
-      #{imgLogoUrl,jdbcType=VARCHAR}, #{hasCommunityVisibleState,jdbcType=BIT}, #{updatetime,jdbcType=VARCHAR},
-      #{extraVarchar,jdbcType=VARCHAR}, #{extraInt,jdbcType=INTEGER})
-  </insert>
+
   <insert id="insertSelective" parameterType="looko.looksteam.demo.entity.OwnedGame">
     insert into ownedgame
     <trim prefix="(" suffix=")" suffixOverrides=",">

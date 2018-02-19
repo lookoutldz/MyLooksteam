@@ -1,11 +1,14 @@
 package looko.looksteam.demo.service;
 
 import looko.looksteam.demo.entity.App;
+import looko.looksteam.demo.entity.OwnedGame;
 
 import java.util.List;
 
 public interface AppService {
-    public int updateApps(List<App> apps);
-    public App searchByID(int appid);
-    public List<App> searchByAppname(String appname);
+    int updateApps(List<App> apps);
+    int updateAppPic(App app);
+    int updateAppsPic(List<OwnedGame> ownedGames);
+    App searchByID(int appid);
+    List<App> searchByAppname(String appname);
 }

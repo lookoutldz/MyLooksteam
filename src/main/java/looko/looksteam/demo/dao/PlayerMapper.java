@@ -9,8 +9,6 @@ public interface PlayerMapper {
 
     int insertSelective(Player record);
 
-    int replace(Player record);
-
     Player selectByPrimaryKey(String steamid);
 
     int updateByPrimaryKeySelective(Player record);
