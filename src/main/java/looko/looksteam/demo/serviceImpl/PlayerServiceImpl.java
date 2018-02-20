@@ -1,5 +1,6 @@
 package looko.looksteam.demo.serviceImpl;
 
+import looko.looksteam.demo.api.GetPlayerSummaries;
 import looko.looksteam.demo.dao.PlayerMapper;
 import looko.looksteam.demo.entity.Player;
 import looko.looksteam.demo.service.PlayerService;
@@ -13,8 +14,9 @@ public class PlayerServiceImpl implements PlayerService {
     private PlayerMapper playerMapper;
 
     @Override
-    public int updatePlayer(Player player) {
+    public int updatePlayer(String steamid) {
         int row = 0;
+        Player player = new GetPlayerSummaries().getAsPlayer(steamid);
         if (null != player){
             if (null != playerMapper.selectByPrimaryKey(player.getSteamid()))
                 row += playerMapper.updateByPrimaryKey(player);

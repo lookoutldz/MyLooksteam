@@ -37,6 +37,7 @@
     <include refid="Base_Column_List" />
     from ownedgame
     where steamid = #{steamid,jdbcType=VARCHAR}
+    AND img_logo_url IS NOT NULL
     ORDER BY playtime_forever DESC
   </select>
   <select id="selectNotPlay" parameterType="java.lang.String" resultMap="BaseResultMap">

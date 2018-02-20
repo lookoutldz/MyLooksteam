@@ -81,14 +81,13 @@ public class DemoApplicationTests {
 	@Test
 	public void test_updatePlayer(){
 
-		playerService.updatePlayer(new GetPlayerSummaries().getAsPlayer("76561198367830998"));
+		playerService.updatePlayer("76561198367830998");
 	}
 
 	@Test
 	public void test_updateOwnedgame(){
 
-		List<OwnedGame> ownedGames = new GetOwnedGame().getAsOwnedGames("76561198267348529");
-		System.out.println(ownedgameService.updateOwnedgames(ownedGames));
+		System.out.println(ownedgameService.updateOwnedgames("76561198267348529"));
 	}
 
 	@Test
@@ -127,7 +126,7 @@ public class DemoApplicationTests {
 	@Test
 	public void test_updateFriend (){
 
-		System.out.println(friendService.updateFriends(new GetFriendList().getAsFriends("76561198367830998")));
+		System.out.println(friendService.updateFriends("76561198367830998"));
 
 //		List<Friend> friends = friendService.getMyFriendsByTime("76561198328486894");
 //		for (Friend friend : friends){

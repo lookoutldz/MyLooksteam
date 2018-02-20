@@ -1,5 +1,6 @@
 package looko.looksteam.demo.serviceImpl;
 
+import looko.looksteam.demo.api.GetFriendList;
 import looko.looksteam.demo.dao.FriendMapper;
 import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.entity.FriendKey;
@@ -16,8 +17,9 @@ public class FriendServiceImpl implements FriendService {
     private FriendMapper friendMapper;
 
     @Override
-    public int updateFriends(List<Friend> friends) {
+    public int updateFriends(String steamid) {
         int row = 0;
+        List<Friend> friends = new GetFriendList().getAsFriends(steamid);
         if (friends != null && friends.size() >0) {
             FriendKey key = new FriendKey();
             for (Friend friend : friends){

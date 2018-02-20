@@ -33,6 +33,7 @@ public class GetOwnedGame {
                 return null;
 
             OwnedGame ownedGame;
+            String picheader = "http://media.steampowered.com/steamcommunity/public/images/apps/";
             for (JsonElement jsonElement : games)
             {
                 JsonObject game = jsonElement.getAsJsonObject();
@@ -41,11 +42,16 @@ public class GetOwnedGame {
                 ownedGame.setSteamid(steamid);
                 ownedGame.setAppid(game.get("appid").getAsInt());
                 ownedGame.setAppname(game.get("name").getAsString());
+                ownedGame.setPlaytimeForever(game.get("playtime_forever").getAsInt()/60);
                 if(game.has("playtime_2weeks"))
-                    ownedGame.setPlaytime2week(game.get("playtime_2weeks").getAsInt());
-                ownedGame.setPlaytimeForever(game.get("playtime_forever").getAsInt());
-                ownedGame.setImgIconUrl(game.get("img_icon_url").getAsString());
-                ownedGame.setImgLogoUrl(game.get("img_logo_url").getAsString());
+                    ownedGame.setPlaytime2week(game.get("playtime_2weeks").getAsInt()/60);
+                else
+                    ownedGame.setPlaytime2week(0);
+
+                if (!game.get("img_icon_url").getAsString().trim().equals(""))
+                    ownedGame.setImgIconUrl(picheader+game.get("appid")+"/"+game.get("img_icon_url").getAsString()+".jpg");
+                if (!game.get("img_logo_url").getAsString().trim().equals(""))
+                    ownedGame.setImgLogoUrl(picheader+game.get("appid")+"/"+game.get("img_logo_url").getAsString()+".jpg");
                 if(game.has("has_community_visible_stats"))
                     ownedGame.setHasCommunityVisibleState(game.get("has_community_visible_stats").getAsBoolean());
                 ownedGame.setUpdatetime(GetNowTime.getAsString());

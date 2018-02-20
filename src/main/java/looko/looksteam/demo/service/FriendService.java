@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface FriendService {
 
-    int updateFriends(List<Friend> friends);
+    int updateFriends(String steamid);
 
     List<Friend> getMyFriends(String steamid);
 
