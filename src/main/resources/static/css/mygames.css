@@ -57,4 +57,5 @@ div, h1 small, h2, h3, li{
 
 div .pagination li a{
     background: rgba(0,0,0,0.3);
+    color: #fff;
 }

@@ -75,28 +75,28 @@
                                     </div>
                                 </div>
                                 <div class="item active">
-                                    <img alt="" th:src="${apps[1].pic1}" />
+                                    <img alt="" th:src="${apps[1].pic2}" />
                                     <div class="carousel-caption">
                                         <h4 th:text="${apps[1].appname}">
                                         </h4>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img alt="" th:src="${apps[2].pic1}" />
+                                    <img alt="" th:src="${apps[2].pic2}" />
                                     <div class="carousel-caption">
                                         <h4 th:text="${apps[2].appname}">
                                         </h4>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img alt="" th:src="${apps[3].pic1}" />
+                                    <img alt="" th:src="${apps[3].pic2}" />
                                     <div class="carousel-caption">
                                         <h4 th:text="${apps[3].appname}">
                                         </h4>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img alt="" th:src="${apps[4].pic1}" />
+                                    <img alt="" th:src="${apps[4].pic2}" />
                                     <div class="carousel-caption">
                                         <h4 th:text="${apps[4].appname}">
                                         </h4>
@@ -116,7 +116,7 @@
                     <div id="middle_column" class="col-md-12 column">
                         <nav class="navbar navbar-default navbar-static-top" role="navigation">
                             <div class="navbar-header">
-                                <a class="navbar-brand" href="#"><i class="fab fa-fort-awesome"></i>  我的游戏库</a>
+                                <a class="navbar-brand" href="#">我的游戏库</a>
                             </div>
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav pull-right">
@@ -144,59 +144,62 @@
                             </div>
 
                         </nav>
-                        <div class="row">
-                            <div th:each="i:${#numbers.sequence(0,11)}" class="col-md-3">
-                                <div class="thumbnail">
-                                    <img alt="300x200" th:src="${ownedgames[i].imgLogoUrl}" th:title="|appid:${ownedgames[i].appid}|" />
-                                    <div class="caption">
-                                        <marquee behavior="alternate" direction="left" scrollamount="3">
-                                            <p th:text="${ownedgames[i].appname}">
-                                            </p>
-                                        </marquee>
-                                        <p th:text="|${ownedgames[i].playtime2week} h / ${ownedgames[i].playtimeForever} h|">
-                                            <span class="pull-right">54%</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div class="row" id="game_show">
+                            <div></div>
                         </div>
-                        <div th:align="center">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#">Prev</a>
-                                </li>
-                                <li>
-                                    <a href="#">1</a>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">4</a>
-                                </li>
-                                <li>
-                                    <a href="#">5</a>
-                                </li>
-                                <li>
-                                    <a href="#">Next</a>
-                                </li>
-                            </ul>
+                        <div th:align="center" id="page_box">
+                            <div id="page_bar">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#0"><i class="fas fa-angle-double-left"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#0"><i class="fas fa-angle-left"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">5</a>
+                                    </li>
+                                    <li>
+                                        <a href="/nextPage?currentPage=1"><i class="fas fa-angle-right"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#0" id="tail"><i class="fas fa-angle-double-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="page_msg">
+                                <p>当前第 <span th:text="${currentPage}"></span> 页，共 <span th:text="${ownedgames.size()/12}"></span>页</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
+
+    <input type="hidden" th:value="${steamid}" id="steamid"/>
 
     <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
     <script th:src="@{js/popper.min.js}"></script>
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script th:src="@{bootstrap-3.3.7/js/bootstrap.js}"></script>
 
+    <script th:src="@{js/jquerysession.js}"></script>
+
     <script th:src="@{js/mygames.js}"></script>
+
 </body>
 </html>

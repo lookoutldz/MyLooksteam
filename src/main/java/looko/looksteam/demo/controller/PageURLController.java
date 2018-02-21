@@ -17,14 +17,14 @@ public class PageURLController {
     private PlayerService playerService;
 
     @RequestMapping("/")
-    public String indexPage(Model model){
+    public String indexHTML(Model model){
         Player player = playerService.selectPlayer("76561198367830998");
         model.addAttribute("player", player);
         return "index";
     }
 
     @RequestMapping("/login")
-    public String loginPage(){
+    public String loginHTML(){
         return "login";
     }
 

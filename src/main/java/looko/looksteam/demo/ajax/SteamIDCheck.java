@@ -28,7 +28,7 @@ public class SteamIDCheck {
 
     @RequestMapping("/steamidcheck")
     @ResponseBody
-    public Player check(HttpServletRequest request, HttpServletResponse response){
+    public Player check(HttpServletRequest request){
 
         String steamid = request.getParameter("steamid");
         String vanityurl = request.getParameter("vanityurl");
