@@ -25,7 +25,7 @@ public class GamesAjax {
         String steamid = request.getParameter("steamid");
         List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_favorite(steamid);
         int gameCount = ownedGames.size();
-        int totalPages = (int) Math.ceil(gameCount/12);
+        int totalPages = (int) Math.ceil(gameCount*1.0/12);
         List<Object> list = new ArrayList<>();
         list.add(ownedGames);
         list.add(gameCount);

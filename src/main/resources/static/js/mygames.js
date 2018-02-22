@@ -7,7 +7,7 @@ var currentPage = 1;
 $(function () {
     //页面加载后马上分页加载游戏库
     var steamid = $('#steamid').val();
-    alert(steamid);
+    //alert(steamid);
 
 
     $.ajax({
@@ -18,7 +18,7 @@ $(function () {
             ownedgames = result[0];
             gameCount = result[1];
             totalPages = result[2];
-            alert("totalPages="+totalPages);
+            //alert("totalPages="+totalPages);
             gameblock_load(ownedgames,gameCount,currentPage,totalPages);
             pagebar_load(currentPage,totalPages);
             clickthing();
@@ -65,7 +65,7 @@ function clickthing() {
                 pagebar_load(currentPage,totalPages);
             }
         }
-
+        loadpagemsg(currentPage,totalPages);
     })
 }
 //加载各个游戏div
@@ -154,18 +154,16 @@ function pagebar_load(currentPage, totalPage) {
         }
     }
     pagebar += '<li id="next_page"><a href="#0"><i class="fas fa-angle-right"></i></a></li><li id="the_last_page"><a href="#0"><i class="fas fa-angle-double-right"></i></a></li></ul>';
-    $('#page_bar ul').remove();
+    //$('#page_bar ul').remove();
     $('#page_bar').html(pagebar);
     clickthing();
 }
 
-//测试中...
+//页码信息加载
 function loadpagemsg(currnetPage,totalPages) {
-    alert("currentPage=="+currnetPage);
-    alert("totalPages=="+totalPages);
-    $('#page_msg').remove();
+
+    //$('#page_msg').remove();
     var page_msg = '';
-    //page_msg += '<p>当前第 '+currentPage+' 页，共 '+totalPages+'页</p>';
-    page_msg += '<div>hello world</div>'
+    page_msg += '<p>当前第 '+currentPage+' 页，共 '+totalPages+'页</p>';
     $('#page_msg').html(page_msg);
 }
