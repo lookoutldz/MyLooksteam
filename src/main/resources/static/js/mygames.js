@@ -239,24 +239,24 @@ function loadmyfavorite(apps,count) {
     }
     else if (count == 1){
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456"></li></ol>';
-        divpart += '<div class="carousel-inner"><div class="item"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4 text="'+apps[0].appname+'"></h4></div></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div></div>';
     }
     else if (count < 5){
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456" class="active"></li>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4 text="'+apps[0].appname+'"></h4></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
         for (var i = 1; i < count; i++){
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-909456"></li>';
-            divpart += '<div class="item"><img alt="" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4 text="'+apps[i].appname+'"></h4></div></div>';
+            divpart += '<div class="item"><img alt="" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
         }
         olpart += '</ol>';
         divpart += '</div>';
     }
     else{
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456" class="active"></li>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4 text="'+apps[0].appname+'"></h4></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
         for (var i = 1; i < 5; i++){
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-909456"></li>';
-            divpart += '<div class="item"><img alt="" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4 text="'+apps[i].appname+'"></h4></div></div>';
+            divpart += '<div class="item"><img alt="" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
         }
         olpart += '</ol>';
         divpart += '</div>';
@@ -304,8 +304,6 @@ $('#find').click(function () {
                 ownedgames = result[0];
                 gameCount = result[1];
                 totalPages = result[2];
-                alert("gameCount="+gameCount);
-                alert("totalPages="+totalPages);
                 if (gameCount > 0){
                     gameblock_load(ownedgames,gameCount,currentPage,totalPages);
                     pagebar_load(currentPage,totalPages);

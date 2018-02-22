@@ -20,15 +20,13 @@
 <body>
     <div class="container">
         <div class="row clearfix">
-            <!--<div id="float_left_bar" class="col-md-2" th:align="center">-->
-                <!---->
-            <!--</div>-->
 
             <div id="left_bar" class="col-md-2 column" th:align="center">
                 <img id="avatar" alt="" th:src="${player.avatarfull}"/>
                 <h3>
                     <i class="fab fa-steam-square"></i> <span th:text="${player.personaname}"></span>
                 </h3>
+                <h4 th:text="|Lv.${level}|"></h4>
                 <h5 th:text="${onlineStatus}">
                 </h5>
                 <ol id="left_nav">
