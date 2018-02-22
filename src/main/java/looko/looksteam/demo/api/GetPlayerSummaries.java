@@ -38,7 +38,8 @@ public class GetPlayerSummaries {
         player.setProfilestate(result.get("profilestate").getAsInt());
         player.setPersonaname(result.get("personaname").getAsString());
         player.setLastlogoff(result.get("lastlogoff").getAsInt());
-        player.setCommentpermission(result.get("commentpermission").getAsInt());
+        if (result.has("commentpermission"))
+            player.setCommentpermission(result.get("commentpermission").getAsInt());
         player.setProfileurl(result.get("profileurl").getAsString());
         player.setAvatar(result.get("avatar").getAsString());
         player.setAvatarmedium(result.get("avatarmedium").getAsString());

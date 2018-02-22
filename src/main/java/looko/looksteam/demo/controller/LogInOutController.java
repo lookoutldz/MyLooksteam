@@ -45,4 +45,10 @@ public class LogInOutController {
         return "redirect:/gamesController?steamid="+steamid;
     }
 
+    @RequestMapping("/logoutController")
+    public String logoutController(){
+
+        return "login";
+    }
+
 }

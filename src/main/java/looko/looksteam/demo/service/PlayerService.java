@@ -11,4 +11,6 @@ public interface PlayerService {
     int updatePlayer(String steamid);
 
     Player selectPlayer(String steamid);
+
+    List<Player> selectAllPlayers();
 }

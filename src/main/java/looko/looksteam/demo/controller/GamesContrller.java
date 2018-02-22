@@ -1,5 +1,7 @@
 package looko.looksteam.demo.controller;
 
+import looko.looksteam.demo.api.GetSteamLevel;
+import looko.looksteam.demo.api.extra.GetPlayerOnlineStatus;
 import looko.looksteam.demo.entity.App;
 import looko.looksteam.demo.entity.OwnedGame;
 import looko.looksteam.demo.entity.Player;
@@ -30,12 +32,12 @@ public class GamesContrller {
 
         //调用service获取各种需要的数据存入modelmap
         modelMap.addAttribute("player",playerService.selectPlayer(steamid));
-        modelMap.addAttribute("ownedgames",ownedgameService.getOwnedgames_favorite(steamid));
-        modelMap.addAttribute("apps",ownedgameService.getMyFavoriteGamesApp(steamid));
+        modelMap.addAttribute("onlineStatus",new GetPlayerOnlineStatus().getStatus(steamid));
+        modelMap.addAttribute("level",new GetSteamLevel().getAsInt(steamid));
         modelMap.addAttribute("steamid", steamid);
         modelMap.addAttribute("currentPage",1);
 
-        return "/games";
+        return "games";
     }
 
 }

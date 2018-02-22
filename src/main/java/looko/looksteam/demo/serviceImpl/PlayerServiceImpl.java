@@ -7,6 +7,8 @@ import looko.looksteam.demo.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("PlayerService")
 public class PlayerServiceImpl implements PlayerService {
 
@@ -30,5 +32,12 @@ public class PlayerServiceImpl implements PlayerService {
     public Player selectPlayer(String steamid) {
 
         return playerMapper.selectByPrimaryKey(steamid);
+    }
+
+    @Override
+    public List<Player> selectAllPlayers() {
+
+        return playerMapper.selectAll();
+
     }
 }

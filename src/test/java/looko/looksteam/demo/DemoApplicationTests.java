@@ -158,4 +158,16 @@ public class DemoApplicationTests {
 
 	}
 
+	@Test
+	public void test_getRecentlyPlayedGames(){
+
+		List<OwnedGame> recentlyGames = new GetRecentlyPlayedGames().getAsOwnedgames("76561198267348529",10);
+		for (OwnedGame game : recentlyGames){
+			System.out.println(game.getAppname()+" : "+game.getPlaytime2week()+"h/"+game.getPlaytimeForever()+"h");
+			System.out.println(game.getImgIconUrl());
+			System.out.println(game.getImgLogoUrl());
+			System.out.println();
+		}
+	}
+
 }
