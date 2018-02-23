@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AppService {
     int updateApps(List<App> apps);
-    int updateAppPic(App app);
+    int updateAppPic(OwnedGame ownedGame);
     int updateAppsPic(List<OwnedGame> ownedGames);
     App searchByID(int appid);
     List<App> searchByAppname(String appname);

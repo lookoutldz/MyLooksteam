@@ -16,7 +16,7 @@ public class ToGet {
                 URL url = new URL(location);
                 InetSocketAddress addr = new InetSocketAddress("127.0.0.1",1080);
                 Proxy proxy = new Proxy(Proxy.Type.HTTP,addr);
-                HttpURLConnection con = (HttpURLConnection) url.openConnection(proxy);
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setConnectTimeout(20000);
                 con.setReadTimeout(20000);
                 con.setUseCaches(false);

@@ -1,6 +1,9 @@
 package looko.looksteam.demo.controller;
 
 import looko.looksteam.demo.api.ResolveVanityURL;
+import looko.looksteam.demo.controller.threads.UpdateAppsPic;
+import looko.looksteam.demo.controller.threads.UpdateFriends;
+import looko.looksteam.demo.controller.threads.UpdatePlayer;
 import looko.looksteam.demo.entity.Player;
 import looko.looksteam.demo.service.AppService;
 import looko.looksteam.demo.service.FriendService;
@@ -25,6 +28,8 @@ public class LogInOutController {
     private OwnedgameService ownedgameService;
     @Autowired
     private FriendService friendService;
+    @Autowired
+    private AppService appService;
 
     @RequestMapping("/loginController")
     public String loginController(HttpServletRequest request){
@@ -37,9 +42,29 @@ public class LogInOutController {
             steamid = new ResolveVanityURL().resolveToSteamID(vanityurl);
 
         if (null == playerService.selectPlayer(steamid)){
-            System.out.println("update player:"+playerService.updatePlayer(steamid));
+
+            UpdatePlayer updatePlayer = new UpdatePlayer();
+            updatePlayer.setSteamid(steamid);
+            updatePlayer.start();
+
             System.out.println("update his games:"+ownedgameService.updateOwnedgames(steamid));
-            System.out.println("update his friends:"+friendService.updateFriends(steamid));
+
+            UpdateAppsPic updateAppsPic = new UpdateAppsPic();
+            updateAppsPic.setSteamid(steamid);
+            updateAppsPic.start();
+
+            UpdateFriends updateFriends = new UpdateFriends();
+            updateFriends.setSteamid(steamid);
+            updateFriends.start();
+
+            try {
+                updatePlayer.join();
+                updateFriends.join();
+                updateAppsPic.join();
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         return "redirect:/gamesController?steamid="+steamid;
