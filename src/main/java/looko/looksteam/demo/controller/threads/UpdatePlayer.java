@@ -2,8 +2,6 @@ package looko.looksteam.demo.controller.threads;
 
 import looko.looksteam.demo.service.PlayerService;
 import looko.looksteam.demo.tool.ApplicationContextHelper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 public class UpdatePlayer extends Thread {
 

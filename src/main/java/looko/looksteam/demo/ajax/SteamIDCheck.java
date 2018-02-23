@@ -1,23 +1,13 @@
 package looko.looksteam.demo.ajax;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import looko.looksteam.demo.api.CheckVisibilityState;
 import looko.looksteam.demo.api.ResolveVanityURL;
 import looko.looksteam.demo.entity.Player;
-import looko.looksteam.demo.tool.X;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 @Controller
 public class SteamIDCheck {

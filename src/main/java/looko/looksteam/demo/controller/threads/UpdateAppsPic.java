@@ -4,10 +4,7 @@ import looko.looksteam.demo.entity.OwnedGame;
 import looko.looksteam.demo.service.AppService;
 import looko.looksteam.demo.service.OwnedgameService;
 import looko.looksteam.demo.tool.ApplicationContextHelper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateAppsPic extends Thread {

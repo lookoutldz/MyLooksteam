@@ -2,11 +2,9 @@ package looko.looksteam.demo.ajax;
 
 import looko.looksteam.demo.entity.App;
 import looko.looksteam.demo.entity.OwnedGame;
-import looko.looksteam.demo.service.AppService;
 import looko.looksteam.demo.service.OwnedgameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
