@@ -130,4 +130,9 @@ public class AppServiceImpl implements AppService {
 
         return appMapper.selectByAppname(appname);
     }
+
+    @Override
+    public List<App> searchEqualsAppname(String appname) {
+        return appMapper.selectEqualsAppname(appname);
+    }
 }

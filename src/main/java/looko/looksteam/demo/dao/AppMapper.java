@@ -15,6 +15,8 @@ public interface AppMapper {
 
     List<App> selectByAppname(String appnamae);
 
+    List<App> selectEqualsAppname(String appname);
+
     int updateByPrimaryKeySelective(App record);
 
     int updateByPrimaryKey(App record);

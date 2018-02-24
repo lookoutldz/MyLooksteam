@@ -13,6 +13,7 @@ public interface OwnedgameService {
     List<OwnedGame> getOwnedgames_favorite(String steamid);
     List<OwnedGame> getOwnedgames_notplay(String steamid);
     List<OwnedGame> searchMyGames(String steamid, String appname);
+    OwnedGame getOwnedgame(String steamid, int appid);
     List<App> getMyFavoriteGamesApp(String steamid);
 
 }

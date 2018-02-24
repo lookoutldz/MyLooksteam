@@ -3,22 +3,20 @@ package looko.looksteam.demo;
 import looko.looksteam.demo.api.*;
 import looko.looksteam.demo.crawler.LaunchCrawler;
 import looko.looksteam.demo.dao.FriendMapper;
-import looko.looksteam.demo.entity.App;
-import looko.looksteam.demo.entity.Friend;
-import looko.looksteam.demo.entity.OwnedGame;
-import looko.looksteam.demo.entity.Player;
-import looko.looksteam.demo.service.AppService;
-import looko.looksteam.demo.service.FriendService;
-import looko.looksteam.demo.service.OwnedgameService;
-import looko.looksteam.demo.service.PlayerService;
+import looko.looksteam.demo.entity.*;
+import looko.looksteam.demo.service.*;
 import looko.looksteam.demo.tool.GetNowTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestComponent;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,6 +35,10 @@ public class DemoApplicationTests {
 
 	@Autowired
 	private FriendService friendService;
+
+	@Autowired
+	private PlayerachService playerachService;
+
 
 	@Test
 	public void contextLoads() {
@@ -168,6 +170,69 @@ public class DemoApplicationTests {
 			System.out.println(game.getImgLogoUrl());
 			System.out.println();
 		}
+	}
+
+	@Test
+	public void test_selectEqualsAppname(){
+		List<App> apps = appService.searchEqualsAppname("Syberia");
+		System.out.println("size = " + apps.size());
+		for (App app : apps){
+			System.out.println(app.getAppid() + " : " + app.getAppname());
+		}
+	}
+
+	@Test
+	public void test_API_getAchievement(){
+		GetPlayerAchievements getAch = new GetPlayerAchievements();
+		List<PlayerAch> playerAches = getAch.getAsPlayerAch("76561198367830998",533300);
+		if (playerAches != null && playerAches.size() > 0)
+			for (PlayerAch playerAch : playerAches){
+
+				System.out.println(playerAch.getAchname());
+			}
+	}
+
+	@Test
+	public void test_getAchievements(){
+
+		System.out.println(playerachService.updateOnesAchievements("76561198367830998"));
+	}
+
+	@Test
+	public void test_getPlayerAchForGame(){
+
+		List<PlayerAch> playerAches = playerachService.getPlayersAchForGame("76561198367830998",533300);
+		if (playerAches != null && playerAches.size() > 0){
+			for (PlayerAch playerAch : playerAches){
+				System.out.println(playerAch.getAppid()+"---"+playerAch.getAchname()+" : "+playerAch.getAchieved());
+			}
+		}
+	}
+
+	@Test
+	public void test_getFullAchGame(){
+
+		List<App> apps;
+		apps = playerachService.getFullAchGame("76561198367830998");
+		if (apps != null && apps.size() > 0){
+			int i = 0;
+			for (App app : apps){
+				System.out.println((i+1)+" : "+app.getAppid()+" : "+app.getAppname());
+				i++;
+			}
+		}
+	}
+
+	@Test
+	public void test_countHasAchGame(){
+
+		System.out.println(playerachService.countHasAchGame("76561198367830998"));
+	}
+
+	@Test
+	public void test_countUnlockAch(){
+
+		System.out.println(playerachService.countUnlockAch("76561198367830998"));
 	}
 
 }

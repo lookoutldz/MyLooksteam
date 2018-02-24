@@ -14,6 +14,7 @@ public class HttpGet {
             System.out.println("urlstr = null");
         }
         else {
+            //System.out.println(urlstr);
             try
             {
                 URL url = new URL(urlstr);

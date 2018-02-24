@@ -3,8 +3,8 @@
 <mapper namespace="looko.looksteam.demo.dao.PlayerAchMapper">
   <resultMap id="BaseResultMap" type="looko.looksteam.demo.entity.PlayerAch">
     <id column="steamid" jdbcType="VARCHAR" property="steamid" />
+    <id column="appid" jdbcType="INTEGER" property="appid" />
     <id column="achname" jdbcType="VARCHAR" property="achname" />
-    <result column="appid" jdbcType="INTEGER" property="appid" />
     <result column="achieved" jdbcType="INTEGER" property="achieved" />
     <result column="unlocktime" jdbcType="INTEGER" property="unlocktime" />
     <result column="updatetime" jdbcType="VARCHAR" property="updatetime" />
@@ -12,25 +12,62 @@
     <result column="extra_int" jdbcType="INTEGER" property="extraInt" />
   </resultMap>
   <sql id="Base_Column_List">
-    steamid, achname, appid, achieved, unlocktime, updatetime, extra_varchar, extra_int
+    steamid, appid, achname, achieved, unlocktime, updatetime, extra_varchar, extra_int
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAchKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from playerach
     where steamid = #{steamid,jdbcType=VARCHAR}
+      and appid = #{appid,jdbcType=INTEGER}
       and achname = #{achname,jdbcType=VARCHAR}
   </select>
+  <select id="selectByGame" parameterType="looko.looksteam.demo.entity.PlayerAchGameKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from playerach
+    where steamid = #{steamid,jdbcType=VARCHAR}
+      and appid = #{appid,jdbcType=INTEGER}
+  </select>
+  <select id="countHasAchGame" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(DISTINCT appid)
+    from playerach
+    where steamid = #{steamid,jdbcType=VARCHAR}
+  </select>
+  <select id="countUnlockAch" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from playerach
+    where steamid = #{steamid,jdbcType=VARCHAR}
+    AND achieved = 1
+  </select>
+  <select id="countAllAch" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    count(*)
+    from playerach
+    where steamid = #{steamid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectFullAchAppid" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select
+    DISTINCT appid
+    from playerach
+    where steamid = #{steamid,jdbcType=VARCHAR}
+
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAchKey">
     delete from playerach
     where steamid = #{steamid,jdbcType=VARCHAR}
+      and appid = #{appid,jdbcType=INTEGER}
       and achname = #{achname,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="looko.looksteam.demo.entity.PlayerAch">
-    insert into playerach (steamid, achname, appid, 
+    insert into playerach (steamid, appid, achname, 
       achieved, unlocktime, updatetime, 
       extra_varchar, extra_int)
-    values (#{steamid,jdbcType=VARCHAR}, #{achname,jdbcType=VARCHAR}, #{appid,jdbcType=INTEGER}, 
+    values (#{steamid,jdbcType=VARCHAR}, #{appid,jdbcType=INTEGER}, #{achname,jdbcType=VARCHAR}, 
       #{achieved,jdbcType=INTEGER}, #{unlocktime,jdbcType=INTEGER}, #{updatetime,jdbcType=VARCHAR}, 
       #{extraVarchar,jdbcType=VARCHAR}, #{extraInt,jdbcType=INTEGER})
   </insert>
@@ -40,11 +77,11 @@
       <if test="steamid != null">
         steamid,
       </if>
-      <if test="achname != null">
-        achname,
-      </if>
       <if test="appid != null">
         appid,
+      </if>
+      <if test="achname != null">
+        achname,
       </if>
       <if test="achieved != null">
         achieved,
@@ -66,11 +103,11 @@
       <if test="steamid != null">
         #{steamid,jdbcType=VARCHAR},
       </if>
-      <if test="achname != null">
-        #{achname,jdbcType=VARCHAR},
-      </if>
       <if test="appid != null">
         #{appid,jdbcType=INTEGER},
+      </if>
+      <if test="achname != null">
+        #{achname,jdbcType=VARCHAR},
       </if>
       <if test="achieved != null">
         #{achieved,jdbcType=INTEGER},
@@ -92,9 +129,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="looko.looksteam.demo.entity.PlayerAch">
     update playerach
     <set>
-      <if test="appid != null">
-        appid = #{appid,jdbcType=INTEGER},
-      </if>
       <if test="achieved != null">
         achieved = #{achieved,jdbcType=INTEGER},
       </if>
@@ -112,17 +146,18 @@
       </if>
     </set>
     where steamid = #{steamid,jdbcType=VARCHAR}
+      and appid = #{appid,jdbcType=INTEGER}
       and achname = #{achname,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAch">
     update playerach
-    set appid = #{appid,jdbcType=INTEGER},
-      achieved = #{achieved,jdbcType=INTEGER},
+    set achieved = #{achieved,jdbcType=INTEGER},
       unlocktime = #{unlocktime,jdbcType=INTEGER},
       updatetime = #{updatetime,jdbcType=VARCHAR},
       extra_varchar = #{extraVarchar,jdbcType=VARCHAR},
       extra_int = #{extraInt,jdbcType=INTEGER}
     where steamid = #{steamid,jdbcType=VARCHAR}
+      and appid = #{appid,jdbcType=INTEGER}
       and achname = #{achname,jdbcType=VARCHAR}
   </update>
 </mapper>

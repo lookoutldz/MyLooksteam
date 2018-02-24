@@ -76,6 +76,15 @@ public class OwnedgameServiceImpl implements OwnedgameService {
     }
 
     @Override
+    public OwnedGame getOwnedgame(String steamid, int appid) {
+
+        OwnedGameKey ownedGameKey = new OwnedGameKey();
+        ownedGameKey.setSteamid(steamid);
+        ownedGameKey.setAppid(appid);
+        return ownedGameMapper.selectByPrimaryKey(ownedGameKey);
+    }
+
+    @Override
     public List<App> getMyFavoriteGamesApp(String steamid) {
 
         List<OwnedGame> ownedGames = ownedGameMapper.selectFavorite(steamid);

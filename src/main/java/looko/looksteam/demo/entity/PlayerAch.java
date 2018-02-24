@@ -1,8 +1,6 @@
 package looko.looksteam.demo.entity;
 
 public class PlayerAch extends PlayerAchKey {
-    private Integer appid;
-
     private Integer achieved;
 
     private Integer unlocktime;
@@ -12,14 +10,6 @@ public class PlayerAch extends PlayerAchKey {
     private String extraVarchar;
 
     private Integer extraInt;
-
-    public Integer getAppid() {
-        return appid;
-    }
-
-    public void setAppid(Integer appid) {
-        this.appid = appid;
-    }
 
     public Integer getAchieved() {
         return achieved;

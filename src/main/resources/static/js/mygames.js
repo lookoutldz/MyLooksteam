@@ -123,14 +123,14 @@ function gameblock_load(ownedgames, gameCount, currentPage, totalPages) {
         if (currentPage == totalPages){
             var max = gameCount - (totalPages-1)*12;
             for (var i = 0; i < max; i++){
-                gameblock += '<div class="col-md-3"><div class="thumbnail"><img alt="300x200" src="'+ownedgames[12*(currentPage-1)+i].imgLogoUrl+'" title="'+ownedgames[12*(currentPage-1)+i].appid+'" />';
+                gameblock += '<div class="col-md-3"><div class="thumbnail"><a href="/gameController?steamid='+steamid+'&appid='+ownedgames[12*(currentPage-1)+i].appid+'"><img alt="300x200" src="'+ownedgames[12*(currentPage-1)+i].imgLogoUrl+'" title="'+ownedgames[12*(currentPage-1)+i].appid+'" /></a>';
                 gameblock += '<div class="caption"><marquee behavior="alternate" direction="left" scrollamount="2"><p>'+ownedgames[12*(currentPage-1)+i].appname+'</p></marquee>';
                 gameblock += '<p>'+ownedgames[12*(currentPage-1)+i].playtime2week+'h/ '+ownedgames[12*(currentPage-1)+i].playtimeForever+'h<span class="pull-right">NO.'+(12*currentPage+i-11)+'</span></p></div></div></div></div>';
             }
         }
         else{
             for (var i = 0; i < 12; i++){
-                gameblock += '<div class="col-md-3"><div class="thumbnail"><img alt="300x200" src="'+ownedgames[12*(currentPage-1)+i].imgLogoUrl+'" title="'+ownedgames[12*(currentPage-1)+i].appid+'" />';
+                gameblock += '<div class="col-md-3"><div class="thumbnail"><a href="/gameController?steamid='+steamid+'&appid='+ownedgames[12*(currentPage-1)+i].appid+'"><img alt="300x200" src="'+ownedgames[12*(currentPage-1)+i].imgLogoUrl+'" title="'+ownedgames[12*(currentPage-1)+i].appid+'" /></a>';
                 gameblock += '<div class="caption"><marquee behavior="alternate" direction="left" scrollamount="2"><p>'+ownedgames[12*(currentPage-1)+i].appname+'</p></marquee>';
                 gameblock += '<p>'+ownedgames[12*(currentPage-1)+i].playtime2week+'h/ '+ownedgames[12*(currentPage-1)+i].playtimeForever+'h<span class="pull-right">NO.'+(12*currentPage+i-11)+'</span></p></div></div></div></div>';
             }

@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 @SessionAttributes("steamid")
 public class GamesContrller {
+
     @Autowired
     private PlayerService playerService;
-
-    @Autowired
-    private OwnedgameService ownedgameService;
-
 
     @RequestMapping("/gamesController")
     public String gamesHTML(String steamid, ModelMap modelMap){

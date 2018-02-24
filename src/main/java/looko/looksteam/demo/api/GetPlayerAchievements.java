@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import looko.looksteam.demo.entity.Player;
 import looko.looksteam.demo.entity.PlayerAch;
 import looko.looksteam.demo.tool.GetNowTime;
 import looko.looksteam.demo.tool.X;
@@ -29,23 +28,28 @@ public class GetPlayerAchievements {
         JsonParser parser = new JsonParser();
         JsonObject root = parser.parse(isr).getAsJsonObject();
         JsonObject playerstats = root.get("playerstats").getAsJsonObject();
-        JsonArray achievements = playerstats.get("achievements").getAsJsonArray();
-        if(0 == achievements.size())
-            return null;
+        String gameName = playerstats.get("gameName").getAsString();
+        if (playerstats.has("achievements")){
+            JsonArray achievements = playerstats.get("achievements").getAsJsonArray();
+            if(0 == achievements.size())
+                return null;
 
-        PlayerAch playerAch;
-        for (JsonElement jsonElement : achievements){
-            JsonObject achievement = jsonElement.getAsJsonObject();
-            playerAch = new PlayerAch();
+            PlayerAch playerAch;
+            for (JsonElement jsonElement : achievements){
+                JsonObject achievement = jsonElement.getAsJsonObject();
+                playerAch = new PlayerAch();
 
-            playerAch.setSteamid(steamid);
-            playerAch.setAchname(achievement.get("apiname").getAsString());
-            playerAch.setAchieved(achievement.get("achieved").getAsInt());
-            playerAch.setUnlocktime(achievement.get("unlocktime").getAsInt());
-            playerAch.setUpdatetime(GetNowTime.getAsString());
-            playerAches.add(playerAch);
+                playerAch.setSteamid(steamid);
+                playerAch.setAppid(appid);
+                playerAch.setAchname(achievement.get("apiname").getAsString());
+                playerAch.setAchieved(achievement.get("achieved").getAsInt());
+                playerAch.setUnlocktime(achievement.get("unlocktime").getAsInt());
+                playerAch.setUpdatetime(GetNowTime.getAsString());
+                playerAches.add(playerAch);
+            }
+            return playerAches;
         }
-        return playerAches;
+        return null;
     }
 
 }

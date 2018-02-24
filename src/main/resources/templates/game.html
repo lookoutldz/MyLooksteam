@@ -9,65 +9,40 @@
     <!-- Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" th:href="@{bootstrap-3.3.7/css/bootstrap.css}"/>
 
-    <!--<link rel="stylesheet" th:href="@{css/mygame.css}" />-->
+    <link rel="stylesheet" th:href="@{css/mygame.css}" />
 
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script th:src="@{js/jquery-3.3.1.js}"></script>
+
+    <script th:src="@{https://use.fontawesome.com/releases/v5.0.6/js/all.js}"></script>
 
 </head>
 <body>
 <div class="container">
     <div class="row clearfix">
-        <div class="col-md-2 column">
+
+        <div id="left_bar" class="col-md-2 column" th:align="center">
+            <img id="avatar" alt="" th:src="${player.avatarfull}"/>
             <h3>
-                lookoutldz
-            </h3><img alt="140x140" src="image/head.png" />
+                <i class="fab fa-steam-square"></i> <span th:text="${player.personaname}"></span>
+            </h3>
+            <h4 th:text="|Lv.${level}|"></h4>
+            <h5 th:text="${onlineStatus}">
+            </h5>
+            <ol id="left_nav">
+                <li><a href="#0"><i class="fas fa-home"></i> 概览</a></li>
+                <li class="active"><i class="fas fa-gamepad"></i> 游戏</li>
+                <li><a href="#0"><i class="fas fa-users"></i> 好友</a></li>
+                <li><a href="#0"><i class="fas fa-gem"></i> 成就</a></li>
+                <li></li>
+                <li></li>
+                <li id="log_out"><a href="/logoutController"><i class="fas fa-power-off"></i> 登出</a></li>
+            </ol>
         </div>
+
         <div class="col-md-7 column">
             <div class="carousel slide" id="carousel-161390">
-                <ol class="carousel-indicators">
-                    <li class="active" data-slide-to="0" data-target="#carousel-161390">
-                    </li>
-                    <li data-slide-to="1" data-target="#carousel-161390">
-                    </li>
-                    <li data-slide-to="2" data-target="#carousel-161390">
-                    </li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="" src="image/bg1.jpg" />
-                        <div class="carousel-caption">
-                            <h4>
-                                First Thumbnail label
-                            </h4>
-                            <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img alt="" src="image/bg2.jpg" />
-                        <div class="carousel-caption">
-                            <h4>
-                                Second Thumbnail label
-                            </h4>
-                            <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <img alt="" src="image/bg3.jpg" />
-                        <div class="carousel-caption">
-                            <h4>
-                                Third Thumbnail label
-                            </h4>
-                            <p>
-                                Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
-                            </p>
-                        </div>
-                    </div>
-                </div> <a class="left carousel-control" href="#carousel-161390" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#carousel-161390" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+
             </div>
             <table class="table table-condensed table-striped table-hover">
                 <thead>
@@ -264,6 +239,10 @@
         </div>
     </div>
 </div>
+
+
+<input type="hidden" th:value="${steamid}" id="steamid"/>
+<input type="hidden" th:value="${appid}" id="appid"/>
 
     <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
     <script th:src="@{js/popper.min.js}"></script>

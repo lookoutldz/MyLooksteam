@@ -88,7 +88,7 @@ CREATE TABLE playerach (
 	updatetime VARCHAR (255),
 	extra_varchar VARCHAR (255),
 	extra_int INT,
-	PRIMARY KEY (steamid, achname)
+	PRIMARY KEY (steamid, appid, achname)
 );
 
 CREATE TABLE friend (
