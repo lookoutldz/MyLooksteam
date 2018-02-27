@@ -77,43 +77,7 @@ public class AppServiceImpl implements AppService {
         int row = 0;
         if (ownedGames != null && ownedGames.size() > 0){
             for (OwnedGame ownedGame : ownedGames){
-                int appid = ownedGame.getAppid();
-                System.out.println(null == appMapper.selectByPrimaryKey(appid).getPic1());
-                System.out.println("appid = " + appid);
-                if(null == appMapper.selectByPrimaryKey(appid).getPic1()){
-                    List<String> strings = new LaunchCrawler().getPicLinks(appid);
-                    if (strings != null && strings.size() > 0) {
-                        App app = new App();
-                        app.setAppid(appid);
-                        int size = strings.size();
-                        if (size >= 5) {
-                            app.setPic1(strings.get(0));
-                            app.setPic2(strings.get(1));
-                            app.setPic3(strings.get(2));
-                            app.setPic4(strings.get(3));
-                            app.setPic5(strings.get(4));
-                        } else if (size == 4) {
-                            app.setPic1(strings.get(0));
-                            app.setPic2(strings.get(1));
-                            app.setPic3(strings.get(2));
-                            app.setPic4(strings.get(3));
-                        } else if (size == 3) {
-                            app.setPic1(strings.get(0));
-                            app.setPic2(strings.get(1));
-                            app.setPic3(strings.get(2));
-                        } else if (size == 2) {
-                            app.setPic1(strings.get(0));
-                            app.setPic2(strings.get(1));
-                        } else {
-                            app.setPic1(strings.get(0));
-                        }
-                        //System.out.println(appid + "-----" + app.getPic1());
-                        app.setImgIconUrl(ownedGame.getImgIconUrl());
-                        app.setImgLogoUrl(ownedGame.getImgLogoUrl());
-                        app.setUpdatetime(GetNowTime.getAsString());
-                        row += appMapper.updateByPrimaryKeySelective(app);
-                    }
-                }
+                row += updateAppPic(ownedGame);
             }
         }
         return row;

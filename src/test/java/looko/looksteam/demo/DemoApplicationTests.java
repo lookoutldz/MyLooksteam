@@ -210,10 +210,10 @@ public class DemoApplicationTests {
 	}
 
 	@Test
-	public void test_getFullAchGame(){
+	public void test_getPerfectGame(){
 
 		List<App> apps;
-		apps = playerachService.getFullAchGame("76561198367830998");
+		apps = playerachService.getPerfectGame("76561198367830998");
 		if (apps != null && apps.size() > 0){
 			int i = 0;
 			for (App app : apps){
@@ -233,6 +233,24 @@ public class DemoApplicationTests {
 	public void test_countUnlockAch(){
 
 		System.out.println(playerachService.countUnlockAch("76561198367830998"));
+	}
+
+	@Test
+	public void test_countPerfectGame(){
+
+		System.out.println(playerachService.countPerfectGame("76561198367830998"));
+	}
+
+	@Test
+	public void test_countGameAch(){
+
+		System.out.println(playerachService.countAllAchByGame("76561198367830998",222880));
+	}
+
+	@Test
+	public void test_countAchieved(){
+
+		System.out.println(playerachService.countAchievedByGame("76561198367830998",222880));
 	}
 
 }

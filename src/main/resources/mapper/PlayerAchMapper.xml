@@ -30,6 +30,13 @@
     where steamid = #{steamid,jdbcType=VARCHAR}
       and appid = #{appid,jdbcType=INTEGER}
   </select>
+  <select id="countAllAchByGame" parameterType="looko.looksteam.demo.entity.PlayerAchGameKey" resultType="java.lang.Integer">
+    select
+    count(achieved)
+    from playerach
+    where steamid = #{steamid,jdbcType=VARCHAR}
+      and appid = #{appid,jdbcType=INTEGER}
+  </select>
   <select id="countHasAchGame" parameterType="java.lang.String" resultType="java.lang.Integer">
     select
     count(DISTINCT appid)
@@ -49,12 +56,47 @@
     from playerach
     where steamid = #{steamid,jdbcType=VARCHAR}
   </select>
-  <select id="selectFullAchAppid" parameterType="java.lang.String" resultType="java.lang.Integer">
+  <select id="countAchievedByGame" parameterType="looko.looksteam.demo.entity.PlayerAchGameKey" resultType="java.lang.Integer">
     select
-    DISTINCT appid
+    count(appid)
     from playerach
     where steamid = #{steamid,jdbcType=VARCHAR}
+    AND appid = #{appid,jdbcType=INTEGER}
+    AND achieved = 1
+  </select>
+  <select id="countPerfectGame" parameterType="java.lang.String" resultType="java.lang.Integer">
 
+    SELECT
+    count(DISTINCT appid)
+    FROM
+        playerach
+    WHERE
+    steamid = #{steamid,jdbcType=VARCHAR}
+    AND	appid NOT IN (
+            SELECT
+                appid
+            FROM
+                playerach
+            WHERE
+                achieved = 0
+	);
+  </select>
+  <select id="getPerfectAppids" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+    SELECT DISTINCT
+        appid
+    FROM
+        playerach
+    WHERE
+    steamid = #{steamid,jdbcType=VARCHAR}
+    AND	appid NOT IN (
+            SELECT
+                appid
+            FROM
+                playerach
+            WHERE
+                achieved = 0
+        );
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="looko.looksteam.demo.entity.PlayerAchKey">

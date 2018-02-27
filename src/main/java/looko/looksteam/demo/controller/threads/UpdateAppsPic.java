@@ -26,8 +26,7 @@ public class UpdateAppsPic extends Thread {
     @Override
     public void run() {
         int row = 0;
-        List<OwnedGame> ownedGames;
-        ownedGames = ownedgameService.getOwnedgames_favorite(steamid);
+        List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_favorite(steamid);
         for (int i = 0; i < 5 && i < ownedGames.size(); i++) {
             row += appService.updateAppPic(ownedGames.get(i));
         }

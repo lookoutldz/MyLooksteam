@@ -64,11 +64,12 @@ public class PlayerachServiceImpl implements PlayerachService {
         return playerAchMapper.selectByGame(key);
     }
 
-//    @Override
-//    public int countFullAchGame(String steamid) {
-//
-//        return getFullAchGame(steamid).size();
-//    }
+    @Override
+    public int countPerfectGame(String steamid) {
+
+        return playerAchMapper.countPerfectGame(steamid);
+    }
+
 
     @Override
     public int countHasAchGame(String steamid) {
@@ -89,35 +90,37 @@ public class PlayerachServiceImpl implements PlayerachService {
     }
 
     @Override
+    public int countAllAchByGame(String steamid, int appid) {
+
+        PlayerAchGameKey key = new PlayerAchGameKey();
+        key.setAppid(appid);
+        key.setSteamid(steamid);
+        return playerAchMapper.countAllAchByGame(key);
+    }
+
+    @Override
+    public int countAchievedByGame(String steamid, int appid) {
+
+        PlayerAchGameKey key = new PlayerAchGameKey();
+        key.setAppid(appid);
+        key.setSteamid(steamid);
+        return playerAchMapper.countAchievedByGame(key);
+    }
+
+    @Override
     public int getAve_FriendsAchPercentage(List<Friend> friends) {
 
         return 0;
     }
 
     @Override
-    public List<App> getFullAchGame(String steamid) {
+    public List<App> getPerfectGame(String steamid) {
 
         List<App> apps = new ArrayList<>();
-        List<Integer> appids = playerAchMapper.selectFullAchAppid(steamid);
+        List<Integer> appids = playerAchMapper.getPerfectAppids(steamid);
         if (appids != null && appids.size() > 0){
-            PlayerAchGameKey key;
-            boolean flag;
             for (Integer appid : appids){
-                flag = true;
-                key = new PlayerAchGameKey();
-                key.setAppid(appid);
-                key.setSteamid(steamid);
-                List<PlayerAch> achsCheck = playerAchMapper.selectByGame(key);
-                if (achsCheck != null && achsCheck.size() > 0){
-                    for (PlayerAch ach : achsCheck){
-                        if (ach.getAchieved() == 0){
-                            flag = false;
-                            break;
-                        }
-                    }
-                }
-                if (flag)
-                    apps.add(appMapper.selectByPrimaryKey(appid));
+                apps.add(appMapper.selectByPrimaryKey(appid));
             }
         }
         return apps;

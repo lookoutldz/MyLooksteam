@@ -25,8 +25,31 @@ public class OwnedgameServiceImpl implements OwnedgameService {
 
     @Override
     public int updateOwnedgames(String steamid) {
+
         int row = 0;
         List<OwnedGame> ownedGames = new GetOwnedGame().getAsOwnedGames(steamid);
+        return updateOwnedgames(ownedGames);
+    }
+
+    @Override
+    public int updateOwnedgames(OwnedGame ownedGame){
+
+        int row = 0;
+        OwnedGameKey key = new OwnedGameKey();
+        key.setAppid(ownedGame.getAppid());
+        key.setSteamid(ownedGame.getSteamid());
+        if (null != ownedGameMapper.selectByPrimaryKey(key))
+            row += ownedGameMapper.updateByPrimaryKey(ownedGame);
+        else
+            row += ownedGameMapper.insert(ownedGame);
+
+        return row;
+    }
+
+    @Override
+    public int updateOwnedgames(List<OwnedGame> ownedGames) {
+
+        int row = 0;
         if (ownedGames != null && ownedGames.size() > 0){
             OwnedGameKey key = new OwnedGameKey();
             for (OwnedGame ownedgame : ownedGames) {
@@ -38,7 +61,6 @@ public class OwnedgameServiceImpl implements OwnedgameService {
                     row += ownedGameMapper.insert(ownedgame);
             }
         }
-
         return row;
     }
 

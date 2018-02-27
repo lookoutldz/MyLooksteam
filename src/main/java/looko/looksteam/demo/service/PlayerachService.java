@@ -14,8 +14,7 @@ public interface PlayerachService {
 
     List<PlayerAch> getPlayersAchForGame(String steamid, int appid);
 
-    //有误待重写
-    //int countFullAchGame(String steamid);
+    int countPerfectGame(String steamid);
 
     int countHasAchGame(String steamid);
 
@@ -23,7 +22,11 @@ public interface PlayerachService {
 
     int countAllAch(String steamid);
 
+    int countAchievedByGame(String steamid, int appid);
+
+    int countAllAchByGame(String steamid, int appid);
+
     int getAve_FriendsAchPercentage(List<Friend> friends);
 
-    List<App> getFullAchGame(String steamid);
+    List<App> getPerfectGame(String steamid);
 }

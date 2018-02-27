@@ -40,112 +40,10 @@
             </ol>
         </div>
 
-        <div class="col-md-7 column">
+        <div class="col-md-6 column">
             <div class="carousel slide" id="carousel-161390">
 
             </div>
-            <table class="table table-condensed table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>
-                        编号
-                    </th>
-                    <th>
-                        aaa
-                    </th>
-                    <th>
-                        交付时间
-                    </th>
-                    <th>
-                        状态
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        01/04/2012
-                    </td>
-                    <td>
-                        Default
-                    </td>
-                </tr>
-                <tr class="success">
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        01/04/2012
-                    </td>
-                    <td>
-                        Approved
-                    </td>
-                </tr>
-                <tr class="error">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        02/04/2012
-                    </td>
-                    <td>
-                        Declined
-                    </td>
-                </tr>
-                <tr class="warning">
-                    <td>
-                        3
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        03/04/2012
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr class="info">
-                    <td>
-                        4
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        04/04/2012
-                    </td>
-                    <td>
-                        Call in to confirm
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-3 column">
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
-            <blockquote>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
-                </p> <small>Someone famous <cite>Source Title</cite></small>
-            </blockquote>
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -153,13 +51,60 @@
                         编号
                     </th>
                     <th>
-                        产品
+                        好友
                     </th>
                     <th>
-                        交付时间
+                        时长
                     </th>
                     <th>
-                        状态
+                        成就状态
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="friendsplay">
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        <div class="friend_avatar">
+                            <img src="" alt=""/>
+                        </div>
+                        <span>friend name</span>
+                    </td>
+                    <td>
+                        <span>times</span>
+                    </td>
+                    <td>
+                        Default
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 column">
+            <div class="col-md-12" id="game_logo_bar">
+                <div id="game_logo">
+                    <img class="pull-left" th:src="${theGame.imgLogoUrl}" alt=""/>
+                    <p style="display: inline-block">123h</p>
+                    <p style="display: inline-block">12h</p>
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        编号
+                    </th>
+                    <th>
+                        成就
+                    </th>
+                    <th>
+                        达成时间
                     </th>
                 </tr>
                 </thead>
@@ -173,65 +118,6 @@
                     </td>
                     <td>
                         01/04/2012
-                    </td>
-                    <td>
-                        Default
-                    </td>
-                </tr>
-                <tr class="success">
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        01/04/2012
-                    </td>
-                    <td>
-                        Approved
-                    </td>
-                </tr>
-                <tr class="error">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        02/04/2012
-                    </td>
-                    <td>
-                        Declined
-                    </td>
-                </tr>
-                <tr class="warning">
-                    <td>
-                        3
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        03/04/2012
-                    </td>
-                    <td>
-                        Pending
-                    </td>
-                </tr>
-                <tr class="info">
-                    <td>
-                        4
-                    </td>
-                    <td>
-                        TB - Monthly
-                    </td>
-                    <td>
-                        04/04/2012
-                    </td>
-                    <td>
-                        Call in to confirm
                     </td>
                 </tr>
                 </tbody>

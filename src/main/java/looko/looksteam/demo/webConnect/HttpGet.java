@@ -19,8 +19,8 @@ public class HttpGet {
             {
                 URL url = new URL(urlstr);
                 HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                con.setConnectTimeout(10000);
-                con.setReadTimeout(10000);
+                con.setConnectTimeout(60000);
+                con.setReadTimeout(60000);
                 con.setRequestMethod("GET");
                 con.connect();
                 int responseCode;

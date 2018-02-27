@@ -1,3 +1,11 @@
+body{
+    background-image: url("/image/sunset.jpg");
+    background-size: cover;
+}
+div, h1 small, h2, h3, li{
+    color: #0f0f0f;
+}
+
 #avatar{
     border-radius: 88px;
     margin-top: 100px;
@@ -13,4 +21,26 @@
     margin-top: 10px;
     font-size: 18px;
     font-weight: bold;
+}
+
+#carousel-161390{
+    margin-top: 50px;
+}
+
+.col-md-6 table{
+    margin-top: 10px;
+}
+
+#game_logo_bar{
+    margin-top: 50px;
+    padding: 0;
+}
+
+#game_logo img{
+    border-radius: 5px;
+}
+
+.friend_avatar{
+    width: 65px;
+    height: 65px;
 }

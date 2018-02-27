@@ -29,6 +29,7 @@ $('#log_out').click(function () {
     }
 })
 
+
 var steamid;
 var ownedgames;
 var gameCount;
@@ -72,6 +73,21 @@ $(function () {
             loadmyfavorite(apps,count);
         }
     })
+
+
+    $.ajax({
+        type : "get",
+        url : "/updateFriendsGame_bg",
+        data : "steamid=" + steamid,
+        success : function () {
+
+        },
+        error : function () {
+
+        }
+    })
+
+
 
 })
 

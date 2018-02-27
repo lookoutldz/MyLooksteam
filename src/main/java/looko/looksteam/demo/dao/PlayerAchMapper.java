@@ -17,13 +17,19 @@ public interface PlayerAchMapper {
 
     List<PlayerAch> selectByGame(PlayerAchGameKey key);
 
+    int countAllAchByGame(PlayerAchGameKey key);
+
     int countHasAchGame(String steamid);
 
     int countUnlockAch(String steamid);
 
     int countAllAch(String steamid);
 
-    List<Integer> selectFullAchAppid(String steamid);
+    int countPerfectGame(String steamid);
+
+    int countAchievedByGame(PlayerAchGameKey key);
+
+    List<Integer> getPerfectAppids(String steamid);
 
     int updateByPrimaryKeySelective(PlayerAch record);
 

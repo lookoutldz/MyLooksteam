@@ -20,6 +20,16 @@ public class LogInOutController {
     @Autowired
     private OwnedgameService ownedgameService;
 
+
+    /*
+        登入控制器，主要用于登录时信息从api的获取和更新
+        要从API获取的信息和获取顺序：
+            1.用户个人信息player,用于更新DB（额外线程）
+            2.用户游戏列表ownedgames,用于更新DB
+            3.利用ownedgames里的列表项更新app表的logo,icon,pic1~pic5（额外线程）
+            4.用户好友列表friends，用于更新DB（额外线程）
+     */
+
     @RequestMapping("/loginController")
     public String loginController(HttpServletRequest request){
 

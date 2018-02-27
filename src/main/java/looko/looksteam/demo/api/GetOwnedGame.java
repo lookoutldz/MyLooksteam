@@ -24,6 +24,7 @@ public class GetOwnedGame {
             if (is == null)
                 return  null;
             InputStreamReader isr = new InputStreamReader(is);
+            System.out.println(steamid);
 
             JsonParser parser = new JsonParser();
             JsonObject root = parser.parse(isr).getAsJsonObject();
