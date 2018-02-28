@@ -23,7 +23,8 @@ public class CheckVisibilityState {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             if (200 != con.getResponseCode()){
                 System.out.println("connect wrong");
-                return null;
+                player.setCommunityvisibilitystate(-2);
+                return player;
             }
             JsonParser parser = new JsonParser();
             JsonObject root = (JsonObject) parser.parse(new InputStreamReader(con.getInputStream()));

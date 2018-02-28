@@ -26,7 +26,6 @@ public class OwnedgameServiceImpl implements OwnedgameService {
     @Override
     public int updateOwnedgames(String steamid) {
 
-        int row = 0;
         List<OwnedGame> ownedGames = new GetOwnedGame().getAsOwnedGames(steamid);
         return updateOwnedgames(ownedGames);
     }

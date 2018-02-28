@@ -1,7 +1,8 @@
 package looko.looksteam.demo.controller;
 
 import looko.looksteam.demo.api.ResolveVanityURL;
-import looko.looksteam.demo.controller.threads.UpdateAppsPic;
+import looko.looksteam.demo.controller.threads.UpdateAppPic;
+import looko.looksteam.demo.controller.threads.UpdateAppPicManager;
 import looko.looksteam.demo.controller.threads.UpdateFriends;
 import looko.looksteam.demo.controller.threads.UpdatePlayer;
 import looko.looksteam.demo.service.OwnedgameService;
@@ -46,11 +47,16 @@ public class LogInOutController {
             updatePlayer.setSteamid(steamid);
             updatePlayer.start();
 
+            long time1 = System.currentTimeMillis();
             System.out.println("update his games:"+ownedgameService.updateOwnedgames(steamid));
+            long time2 = System.currentTimeMillis();
 
-            UpdateAppsPic updateAppsPic = new UpdateAppsPic();
-            updateAppsPic.setSteamid(steamid);
-            updateAppsPic.start();
+            UpdateAppPicManager updateAppPicManager = new UpdateAppPicManager();
+            updateAppPicManager.goUpdate(steamid);
+            long time3 = System.currentTimeMillis();
+
+            System.out.println("update game : " + (time2-time1) + "ms");
+            System.out.println("update pic : " + (time3-time2) + "ms");
 
             UpdateFriends updateFriends = new UpdateFriends();
             updateFriends.setSteamid(steamid);
@@ -59,7 +65,6 @@ public class LogInOutController {
             try {
                 updatePlayer.join();
                 updateFriends.join();
-                updateAppsPic.join();
             }
             catch (InterruptedException e) {
                 e.printStackTrace();

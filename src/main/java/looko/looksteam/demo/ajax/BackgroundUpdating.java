@@ -21,19 +21,28 @@ public class BackgroundUpdating {
     @ResponseBody
     public void friendsGameUpdateing(HttpServletRequest request){
 
-        String steamid = request.getParameter("steamid");
-        List<Friend> friends;
-        friends = friendService.getMyFriends(steamid);
-        UpdateFriendsGame updateFriendsGame;
-       for (Friend friend : friends){
-           updateFriendsGame = new UpdateFriendsGame();
-           updateFriendsGame.setFriend(friend);
-           updateFriendsGame.start();
-       }
+        //每更新20条记录留3秒用于网络传输
 
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
+        try
+        {
+            String steamid = request.getParameter("steamid");
+            List<Friend> friends;
+            friends = friendService.getMyFriends(steamid);
+            UpdateFriendsGame updateFriendsGame;
+            int i = 0;
+            for (Friend friend : friends){
+                updateFriendsGame = new UpdateFriendsGame();
+                updateFriendsGame.setFriend(friend);
+                updateFriendsGame.start();
+
+                if (i%20==0){
+                    Thread.sleep(3000);
+                }
+            }
+
+            Thread.sleep(3000);
+        }
+        catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
