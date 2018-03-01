@@ -1,8 +1,10 @@
 package looko.looksteam.demo.ajax;
 
 import looko.looksteam.demo.controller.threads.UpdateFriendsGame;
+import looko.looksteam.demo.controller.threads.UpdateFriendsManager;
 import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.service.FriendService;
+import looko.looksteam.demo.service.OwnedgameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,12 @@ public class BackgroundUpdating {
 
     @Autowired
     FriendService friendService;
+    @Autowired
+    OwnedgameService ownedgameService;
 
     @RequestMapping("updateFriendsGame_bg")
     @ResponseBody
-    public void friendsGameUpdateing(HttpServletRequest request){
-
-        //每更新20条记录留3秒用于网络传输
+    public void friendsGameUpdating(HttpServletRequest request){
 
         try
         {
@@ -35,9 +37,6 @@ public class BackgroundUpdating {
                 updateFriendsGame.setFriend(friend);
                 updateFriendsGame.start();
 
-                if (i%20==0){
-                    Thread.sleep(3000);
-                }
             }
 
             Thread.sleep(3000);
@@ -45,5 +44,8 @@ public class BackgroundUpdating {
         catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        return;
     }
+
 }

@@ -12,6 +12,8 @@ public class UpdateFriendsGame extends Thread {
 
     private OwnedgameService ownedgameService = ApplicationContextHelper.getBean(OwnedgameService.class);
 
+    private Friend friend;
+
     public Friend getFriend() {
         return friend;
     }
@@ -19,9 +21,6 @@ public class UpdateFriendsGame extends Thread {
     public void setFriend(Friend friend) {
         this.friend = friend;
     }
-
-    private Friend friend;
-
 
     @Override
     public void run() {

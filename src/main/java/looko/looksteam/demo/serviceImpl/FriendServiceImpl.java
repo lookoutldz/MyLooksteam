@@ -11,26 +11,43 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("FriendService")
-public class FriendServiceImpl implements FriendService {
+public class FriendServiceImpl  implements FriendService {
 
     @Autowired
     private FriendMapper friendMapper;
 
     @Override
     public int updateFriends(String steamid) {
-        int row = 0;
+
         List<Friend> friends = new GetFriendList().getAsFriends(steamid);
+        return updateFriends(friends);
+    }
+
+    @Override
+    public int updateFriends(List<Friend> friends) {
+
+        int row = 0;
         if (friends != null && friends.size() >0) {
-            FriendKey key = new FriendKey();
+
             for (Friend friend : friends){
-                key.setSteamid(friend.getSteamid());
-                key.setFriendsteamid(friend.getFriendsteamid());
-                if (null != friendMapper.selectByPrimaryKey(key))
-                    row += friendMapper.updateByPrimaryKey(friend);
-                else
-                    row += friendMapper.insert(friend);
+                row += updateFriends(friend);
             }
         }
+        return row;
+    }
+
+    @Override
+    public int updateFriends(Friend friend) {
+
+        int row = 0;
+        FriendKey key = new FriendKey();
+        key.setSteamid(friend.getSteamid());
+        key.setFriendsteamid(friend.getFriendsteamid());
+        if (null != friendMapper.selectByPrimaryKey(key))
+            row += friendMapper.updateByPrimaryKey(friend);
+        else
+            row += friendMapper.insert(friend);
+
         return row;
     }
 

@@ -24,6 +24,7 @@ public class UpdateAppPic extends Thread {
 
     @Override
     public void run() {
+
         appService.updateAppPic(ownedGame);
     }
 }

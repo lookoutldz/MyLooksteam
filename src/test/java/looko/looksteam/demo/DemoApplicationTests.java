@@ -1,6 +1,7 @@
 package looko.looksteam.demo;
 
 import looko.looksteam.demo.api.*;
+import looko.looksteam.demo.controller.threads.UpdateAchManager;
 import looko.looksteam.demo.crawler.LaunchCrawler;
 import looko.looksteam.demo.dao.FriendMapper;
 import looko.looksteam.demo.entity.*;
@@ -56,7 +57,7 @@ public class DemoApplicationTests {
 
 		System.out.println("start");
 		long time1 = System.currentTimeMillis();
-		List<App> apps = appService.searchByAppname("%final fantasy%");
+		List<App> apps = appService.searchByAppname("ys");
 		if (apps.size() > 0){
 			for (App app : apps){
 				System.out.println(app.getAppid() + " : " + app.getAppname());
@@ -195,7 +196,7 @@ public class DemoApplicationTests {
 	@Test
 	public void test_getAchievements(){
 
-		System.out.println(playerachService.updateOnesAchievements("76561198367830998"));
+		System.out.println(playerachService.updateAchievements("76561198367830998"));
 	}
 
 	@Test
@@ -253,4 +254,9 @@ public class DemoApplicationTests {
 		System.out.println(playerachService.countAchievedByGame("76561198367830998",222880));
 	}
 
+	@Test
+	public void  test_UpdateAch(){
+
+		UpdateAchManager updateAchManager = new UpdateAchManager();
+	}
 }

@@ -74,20 +74,12 @@ $(function () {
         }
     })
 
-
+    //更新好友游戏
     $.ajax({
         type : "get",
         url : "/updateFriendsGame_bg",
         data : "steamid=" + steamid,
-        success : function () {
-
-        },
-        error : function () {
-
-        }
     })
-
-
 
 })
 

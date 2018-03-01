@@ -65,4 +65,5 @@ public class GamesAjax {
 
         return list;
     }
+
 }

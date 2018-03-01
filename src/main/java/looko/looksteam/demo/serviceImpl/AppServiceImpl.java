@@ -92,7 +92,7 @@ public class AppServiceImpl implements AppService {
     @Override
     public List<App> searchByAppname(String appname) {
 
-        return appMapper.selectByAppname(appname);
+        return appMapper.selectByAppname("%"+appname+"%");
     }
 
     @Override

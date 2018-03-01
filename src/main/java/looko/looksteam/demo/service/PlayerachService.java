@@ -8,7 +8,11 @@ import java.util.List;
 
 public interface PlayerachService {
 
-    int updateOnesAchievements(String steamid);
+    int updateAchievements(String steamid);
+
+    int updateAchievements(List<PlayerAch> playerAches);
+
+    int updateAchievements(PlayerAch playerAch);
 
     List<PlayerAch> getPlayersAch(String steamid);
 

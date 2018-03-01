@@ -23,30 +23,48 @@ public class PlayerachServiceImpl implements PlayerachService {
     AppMapper appMapper;
 
     @Override
-    public int updateOnesAchievements(String steamid) {
+    public int updateAchievements(String steamid) {
 
         int row = 0;
         List<OwnedGame> ownedGames = ownedGameMapper.selectBySteamid(steamid);//获得用户游戏列表
         if (ownedGames != null && ownedGames.size() > 0){
             GetPlayerAchievements getAch = new GetPlayerAchievements();
             List<PlayerAch> playerAches;
-            PlayerAchKey key;
             for (OwnedGame ownedGame : ownedGames){//更新每个游戏的成就
-                key = new PlayerAchKey();
+
                 playerAches = getAch.getAsPlayerAch(steamid,ownedGame.getAppid());
                 if (playerAches != null && playerAches.size() > 0){
-                    for (PlayerAch playerAch : playerAches){
-                        key.setSteamid(steamid);
-                        key.setAchname(playerAch.getAchname());
-                        if (null == playerAchMapper.selectByPrimaryKey(key))
-                            row += playerAchMapper.insert(playerAch);
-                        else
-                            row += playerAchMapper.updateByPrimaryKey(playerAch);
-                    }
+                    row += updateAchievements(playerAches);
                 }
             }
         }
         return  row;
+    }
+
+    @Override
+    public int updateAchievements(List<PlayerAch> playerAches) {
+
+        int row = 0;
+        for (PlayerAch playerAch : playerAches){
+            row += updateAchievements(playerAch);
+        }
+        return row;
+    }
+
+    @Override
+    public int updateAchievements(PlayerAch playerAch) {
+
+        int row = 0;
+        PlayerAchKey key;
+        key = new PlayerAchKey();
+        key.setSteamid(playerAch.getSteamid());
+        key.setAppid(playerAch.getAppid());
+        key.setAchname(playerAch.getAchname());
+        if (null == playerAchMapper.selectByPrimaryKey(key))
+            row += playerAchMapper.insert(playerAch);
+        else
+            row += playerAchMapper.updateByPrimaryKey(playerAch);
+        return row;
     }
 
     @Override
