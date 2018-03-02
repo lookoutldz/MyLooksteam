@@ -1,5 +1,6 @@
 package looko.looksteam.demo.controller.threads;
 
+import looko.looksteam.demo.api.CheckVisibilityState;
 import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.service.FriendService;
 import looko.looksteam.demo.tool.ApplicationContextHelper;
@@ -21,6 +22,7 @@ public class UpdateFriends extends Thread {
     @Override
     public void run() {
 
+        friend.setExtraInt(new CheckVisibilityState().check(friend.getFriendsteamid()).getCommunityvisibilitystate());
         friendService.updateFriends(friend);
     }
 }
