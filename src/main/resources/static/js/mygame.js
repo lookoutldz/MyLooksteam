@@ -52,7 +52,7 @@ $(function () {
             loadgamepic(piclist, pic_count);
         },
         error : function () {
-            alert("shit");
+            alert("orz");
         }
     })
 
@@ -61,20 +61,13 @@ $(function () {
         url : "/loadfriends",
         data : "steamid=" + steamid + "&appid=" + appid,
         success : function (result) {
-            var friend_players = result[0];
-            var play2week = result[1];
-            var playforever = result[2];
-            var achieved_count = result[3];
-            var ach_all = result[4];
-            var count = result[5];
+            var gameFriends = result[0];
+            var count = result[1];
 
-            //alert(friend_players[0].steamid);
-            alert(count);
-
-            //loadfriends(friend_players,play2week,playforever,achieved_count,ach_all,count);
+            loadfriends(gameFriends,count);
         },
         error : function () {
-            alert("fuck");
+            alert("orzorz");
         }
     })
 
@@ -108,23 +101,22 @@ function loadgamepic(piclist, pic_count) {
     $('#carousel-161390').html(all);
 }
 
-function loadfriends(players,play2week,playforever,ach_counts,ach_all,count) {
+function loadfriends(gameFriends,count) {
 
     var tr = '';
     if (count == 0){
         alert("really?")
     }
-    else if (count < 20){
+    else if (count < 10){
         for (var i = 0; i < count; i++){
-            tr += '<tr><td>'+i+'</td><td><div class="friend_avatar"><img src="'+players[i].avatar+'" alt=""/><span>'+players[i].personaname+'</span></div></td>';
-            tr += '<td>'+play2week+'h/ '+playforever+'h'+'</td><td>'+ach_counts[i]+'/'+ach_all+'</td></tr>';
+            tr += '<tr><td>'+(i+1)+'</td><td><div class="friend_avatar"><img src="'+gameFriends[i].avatar+'" alt=""/></div></td><td>'+gameFriends[i].personaname+'</td>';
+            tr += '<td>'+gameFriends[i].play2week+'h / '+gameFriends[i].playforever+'h'+'</td><td>'+gameFriends[i].achieved_count+'/'+gameFriends[i].achievement_all+'</td></tr>';
         }
     }
     else{
-        for (var i = 0; i < 20; i++){
-            tr += '<tr><td>'+i+'</td><td><div class="friend_avatar"><img src="'+players[i].avatar+'" alt=""/><span>'+players[i].personaname+'</span></div></td>';
-            tr += '<td>'+play2week+'h/ '+playforever+'h'+'</td><td>'+ach_counts[i]+'/'+ach_all+'</td></tr>';
-        }
+        for (var i = 0; i < 10; i++){
+            tr += '<tr><td>'+(i+1)+'</td><td><div class="friend_avatar"><img src="'+gameFriends[i].avatar+'" alt=""/></div></td><td>'+gameFriends[i].personaname+'</td>';
+            tr += '<td>'+gameFriends[i].play2week+'h / '+gameFriends[i].playforever+'h'+'</td><td>'+gameFriends[i].achieved_count+'/'+gameFriends[i].achievement_all+'</td></tr>';        }
     }
     $('#friendsplay').empty();
     $('#friendsplay').html(tr);

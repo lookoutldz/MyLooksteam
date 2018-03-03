@@ -19,6 +19,7 @@ public class UpdatePlayer extends Thread {
 
     @Override
     public void run() {
+
         System.out.println("update player:"+playerService.updatePlayer(steamid));
     }
 }

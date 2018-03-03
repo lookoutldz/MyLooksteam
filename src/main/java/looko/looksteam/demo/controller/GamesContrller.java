@@ -25,6 +25,7 @@ public class GamesContrller {
         modelMap.addAttribute("onlineStatus",new GetPlayerOnlineStatus().getStatus(steamid));
         modelMap.addAttribute("level",new GetSteamLevel().getAsInt(steamid));
         modelMap.addAttribute("steamid", steamid);
+
         modelMap.addAttribute("currentPage",1);
 
         return "games";

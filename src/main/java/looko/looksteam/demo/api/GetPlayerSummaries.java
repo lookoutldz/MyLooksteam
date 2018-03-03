@@ -7,7 +7,6 @@ import looko.looksteam.demo.entity.Player;
 import looko.looksteam.demo.tool.GetNowTime;
 import looko.looksteam.demo.tool.X;
 import looko.looksteam.demo.webConnect.HttpGet;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;

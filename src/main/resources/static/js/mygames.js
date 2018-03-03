@@ -71,14 +71,33 @@ $(function () {
             count = result[1];
             //alert("count="+count);
             loadmyfavorite(apps,count);
+        },
+        error :function () {
         }
     })
 
-    //更新好友游戏
+    //更新好友的player信息
+    $.ajax({
+        type : "get",
+        url : "/updateFriendsPlayer_bg",
+        data : "steamid=" + steamid,
+        success : function (result) {
+        },
+        error : function () {
+            alert("err1");
+        }
+    })
+
+    ///更新好友游戏
     $.ajax({
         type : "get",
         url : "/updateFriendsGame_bg",
         data : "steamid=" + steamid,
+        success : function (result) {
+        },
+        error : function () {
+            alert("err2")
+        }
     })
 
 })

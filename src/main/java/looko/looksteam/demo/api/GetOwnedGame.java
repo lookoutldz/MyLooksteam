@@ -6,10 +6,8 @@ import looko.looksteam.demo.tool.GetNowTime;
 import looko.looksteam.demo.tool.X;
 import looko.looksteam.demo.webConnect.HttpGet;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class GetOwnedGame {
             if (is == null)
                 return  null;
             InputStreamReader isr = new InputStreamReader(is);
-            System.out.println(steamid);
+            //System.out.println(steamid);
 
             JsonParser parser = new JsonParser();
             JsonObject root = parser.parse(isr).getAsJsonObject();

@@ -1,11 +1,10 @@
 package looko.looksteam.demo.ajax;
 
-import looko.looksteam.demo.ajax.threads.CheckVisibilityManager;
-import looko.looksteam.demo.api.CheckVisibilityState;
 import looko.looksteam.demo.entity.App;
 import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.entity.OwnedGame;
 import looko.looksteam.demo.entity.Player;
+import looko.looksteam.demo.model.Game_Friends;
 import looko.looksteam.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.*;
 
 @Controller
 public class GameAjax {
@@ -74,12 +73,7 @@ public class GameAjax {
         String steamid = request.getParameter("steamid");
         int appid = Integer.parseInt(request.getParameter("appid"));
 
-        List<Player> friends_player = new ArrayList<>();//每个好友的个人信息
-        List<Integer> play2week = new ArrayList<>();//每个好友的游戏两周时长
-        List<Integer> playforever = new ArrayList<>();//每个好友的游戏总时长
-        List<Integer> achieved_count = new ArrayList<>();//用于存储每个好友在游戏中达成的成就数
-        int ach_all = playerachService.countAllAchByGame(steamid,appid);//游戏总成就数
-        System.out.println("count achievements = " + ach_all);
+        List<Game_Friends> gameFriends = new ArrayList<>();
 
         //获取好友列表
         List<Friend> friends = friendService.getMyFriends(steamid);
@@ -87,29 +81,54 @@ public class GameAjax {
         //循环遍历好友列表，剔除资料私密的好友和没有此游戏的好友，并将剩余好友加入列表
         if (friends != null && friends.size() > 0){
             int visible;
+            int ach_all = playerachService.countAllAchByGame(steamid,appid);
+            Game_Friends gameFriend;
+            OwnedGame ownedGame;
+            Player p;
             for (Friend friend : friends){
                 String friend_steamid = friend.getFriendsteamid();
                 visible = friend.getExtraInt();
-                //System.out.println(friend_steamid + " : " + visible);
                 if (visible == 3){
-                    OwnedGame ownedGame = ownedgameService.getOwnedgame(friend_steamid,appid);
+                    ownedGame = ownedgameService.getOwnedgame(friend_steamid,appid);
                     if (ownedGame != null){
-                        friends_player.add(playerService.selectPlayer(friend_steamid));
-                        play2week.add(ownedGame.getPlaytime2week());
-                        playforever.add(ownedGame.getPlaytimeForever());
-                        achieved_count.add(playerachService.countAchievedByGame(friend_steamid,appid));
+                        gameFriend = new Game_Friends();
+                        p = playerService.selectPlayer(friend_steamid);
+
+                        gameFriend.setSteamid(p.getSteamid());
+                        gameFriend.setAvatar(p.getAvatar());
+                        gameFriend.setPersonaname(p.getPersonaname());
+                        gameFriend.setPlay2week(ownedGame.getPlaytime2week());
+                        gameFriend.setPlayforever(ownedGame.getPlaytimeForever());
+                        gameFriend.setAchieved_count(playerachService.countAchievedByGame(friend_steamid,appid));
+                        gameFriend.setAchievement_all(ach_all);
+
+                        gameFriends.add(gameFriend);
                     }
                 }
             }
+            //加入自己的资料
+            gameFriend = new Game_Friends();
+            p = playerService.selectPlayer(steamid);
+            ownedGame = ownedgameService.getOwnedgame(steamid,appid);
 
+            gameFriend.setSteamid(p.getSteamid());
+            gameFriend.setAvatar(p.getAvatar());
+            gameFriend.setPersonaname(p.getPersonaname());
+            gameFriend.setPlay2week(ownedGame.getPlaytime2week());
+            gameFriend.setPlayforever(ownedGame.getPlaytimeForever());
+            gameFriend.setAchieved_count(playerachService.countAchievedByGame(steamid,appid));
+            gameFriend.setAchievement_all(ach_all);
+
+            gameFriends.add(gameFriend);
         }
-        int count = friends_player.size();
+        int count = gameFriends.size();
 
-        list.add(friends_player);
-        list.add(play2week);
-        list.add(playforever);
-        list.add(achieved_count);
-        list.add(ach_all);
+        long time1 = System.currentTimeMillis();
+        Collections.sort(gameFriends);
+        long time2 = System.currentTimeMillis();
+
+        System.out.println((time2-time1) + "ms");
+        list.add(gameFriends);
         list.add(count);
 
         return list;

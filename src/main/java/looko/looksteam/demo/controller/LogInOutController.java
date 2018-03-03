@@ -45,26 +45,23 @@ public class LogInOutController {
             updatePlayer.setSteamid(steamid);
             updatePlayer.start();
 
-            //long time1 = System.currentTimeMillis();
             System.out.println("update his games:"+ownedgameService.updateOwnedgames(steamid));
-            //long time2 = System.currentTimeMillis();
 
             UpdateAppPicManager updateAppPicManager = new UpdateAppPicManager();
             updateAppPicManager.goUpdate(steamid);
-            //long time3 = System.currentTimeMillis();
-
-            //System.out.println("update game : " + (time2-time1) + "ms");
-            //System.out.println("update pic : " + (time3-time2) + "ms");
 
             UpdateFriendsManager updateFriendsManager = new UpdateFriendsManager();
             updateFriendsManager.goUpdate(steamid);
 
-            try {
-                updatePlayer.join();
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        }
+        else{
+            System.out.println("update his games:"+ownedgameService.updateOwnedgames(steamid));
+
+            UpdateAppPicManager updateAppPicManager = new UpdateAppPicManager();
+            updateAppPicManager.goUpdate(steamid);
+
+            UpdateFriendsManager updateFriendsManager = new UpdateFriendsManager();
+            updateFriendsManager.goUpdate(steamid);
         }
 
         return "redirect:/gamesController?steamid="+steamid;

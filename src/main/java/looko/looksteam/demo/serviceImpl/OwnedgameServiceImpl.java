@@ -52,12 +52,7 @@ public class OwnedgameServiceImpl implements OwnedgameService {
         if (ownedGames != null && ownedGames.size() > 0){
             OwnedGameKey key = new OwnedGameKey();
             for (OwnedGame ownedgame : ownedGames) {
-                key.setAppid(ownedgame.getAppid());
-                key.setSteamid(ownedgame.getSteamid());
-                if (null != ownedGameMapper.selectByPrimaryKey(key))
-                    row += ownedGameMapper.updateByPrimaryKey(ownedgame);
-                else
-                    row += ownedGameMapper.insert(ownedgame);
+                row += updateOwnedgames(ownedgame);
             }
         }
         return row;

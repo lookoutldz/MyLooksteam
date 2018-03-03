@@ -41,6 +41,10 @@ div, h1 small, h2, h3, li{
 }
 
 .friend_avatar{
-    width: 65px;
-    height: 65px;
+    display: inline-block;
+}
+.col-md-6 table tbody tr td{
+    border: none;
+    color: cyan;
+    font-size: 18px;
 }
