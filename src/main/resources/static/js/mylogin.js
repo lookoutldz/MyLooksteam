@@ -150,6 +150,9 @@ function checkout(player, form, btn, remember) {
                 $.cookie("vanityurl", vanityurl);
             }
         }
+        var alarmmsg = $("<div>正在加载个人数据，请稍候...</div>")
+        btn.parent().parent().append(alarmmsg);
+        alert("before submit")
         form.submit();
     }
     else if (visible_status==-1) {
@@ -160,6 +163,5 @@ function checkout(player, form, btn, remember) {
         // 连接失败
         var alarmmsg = $("<div style=\"margin-top: 50px;\" align='center' id=\"alarmmsg\" class=\"alert alert-warning\"><a href=\"#\" class=\"close\" data-dismiss=\"alert\">&times;</a>连接失败</div>");
     }
-
     btn.parent().parent().append(alarmmsg);
 }

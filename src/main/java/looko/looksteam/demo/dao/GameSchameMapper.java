@@ -2,7 +2,9 @@ package looko.looksteam.demo.dao;
 
 import looko.looksteam.demo.entity.GameSchame;
 import looko.looksteam.demo.entity.GameSchameKey;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GameSchameMapper {
     int deleteByPrimaryKey(GameSchameKey key);
 

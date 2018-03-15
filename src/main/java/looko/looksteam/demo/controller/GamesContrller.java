@@ -18,13 +18,14 @@ public class GamesContrller {
     private PlayerService playerService;
 
     @RequestMapping("/gamesController")
-    public String gamesHTML(String steamid, ModelMap modelMap){
+    public String gamesHTML(String steamid, String fromPage, ModelMap modelMap){
 
         //调用service获取各种需要的数据存入modelmap
         modelMap.addAttribute("player",playerService.selectPlayer(steamid));
         modelMap.addAttribute("onlineStatus",new GetPlayerOnlineStatus().getStatus(steamid));
         modelMap.addAttribute("level",new GetSteamLevel().getAsInt(steamid));
         modelMap.addAttribute("steamid", steamid);
+        modelMap.addAttribute("fromPage",fromPage);
 
         modelMap.addAttribute("currentPage",1);
 

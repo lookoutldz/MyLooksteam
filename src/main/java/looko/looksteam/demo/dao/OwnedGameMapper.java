@@ -4,9 +4,11 @@ import looko.looksteam.demo.entity.MyGameKey;
 import looko.looksteam.demo.entity.MyGameTimeKey;
 import looko.looksteam.demo.entity.OwnedGame;
 import looko.looksteam.demo.entity.OwnedGameKey;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface OwnedGameMapper {
     int deleteByPrimaryKey(OwnedGameKey key);
 

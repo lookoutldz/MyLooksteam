@@ -2,9 +2,11 @@ package looko.looksteam.demo.dao;
 
 import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.entity.FriendKey;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface FriendMapper {
     int deleteByPrimaryKey(FriendKey key);
 

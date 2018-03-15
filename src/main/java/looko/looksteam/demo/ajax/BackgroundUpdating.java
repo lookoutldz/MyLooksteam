@@ -1,8 +1,6 @@
 package looko.looksteam.demo.ajax;
 
-import looko.looksteam.demo.controller.threads.UpdateFriends;
 import looko.looksteam.demo.controller.threads.UpdateFriendsGame;
-import looko.looksteam.demo.controller.threads.UpdateFriendsManager;
 import looko.looksteam.demo.controller.threads.UpdatePlayer;
 import looko.looksteam.demo.entity.Friend;
 import looko.looksteam.demo.service.FriendService;
@@ -28,23 +26,26 @@ public class BackgroundUpdating {
     public void friendsGameUpdating(HttpServletRequest request){
 
         System.out.println("friendsGameUpdating is ok");
-        String steamid = request.getParameter("steamid");
-        List<Friend> friends;
-        friends = friendService.getMyFriends(steamid);
-        if (friends != null && friends.size() > 0){
-            UpdateFriendsGame updateFriendsGame;
-            for (Friend friend : friends){
-                updateFriendsGame = new UpdateFriendsGame();
-                updateFriendsGame.setFriend(friend);
-                updateFriendsGame.start();
-            }
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        //新登录则要更新后台信息
+        String fromPage = request.getParameter("fromPage");
+        if (fromPage != null && fromPage.equals("login")){
+            String steamid = request.getParameter("steamid");
+            List<Friend> friends;
+            friends = friendService.getMyFriends(steamid);
+            if (friends != null && friends.size() > 0){
+                UpdateFriendsGame updateFriendsGame;
+                for (Friend friend : friends){
+                    updateFriendsGame = new UpdateFriendsGame();
+                    updateFriendsGame.setFriend(friend);
+                    updateFriendsGame.start();
+                }
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-
         return;
     }
 
@@ -53,20 +54,24 @@ public class BackgroundUpdating {
     public void friendsPlayerUpdating(HttpServletRequest request){
 
         System.out.println("updatePlayerForFriends is ok");
-        String steamid = request.getParameter("steamid");
-        List<Friend> friends = friendService.getMyFriends(steamid);
-        if (friends != null && friends.size() > 0){
-            //System.out.println("size = "+friends.size());
-            UpdatePlayer updatePlayer;
-            for (Friend friend : friends){
-                updatePlayer = new UpdatePlayer();
-                updatePlayer.setSteamid(friend.getFriendsteamid());
-                updatePlayer.start();
-            }
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        //新登录则要更新后台信息
+        String fromPage = request.getParameter("fromPage");
+        if (fromPage != null && fromPage.equals("login")) {
+            String steamid = request.getParameter("steamid");
+            List<Friend> friends = friendService.getMyFriends(steamid);
+            if (friends != null && friends.size() > 0) {
+                //System.out.println("size = "+friends.size());
+                UpdatePlayer updatePlayer;
+                for (Friend friend : friends) {
+                    updatePlayer = new UpdatePlayer();
+                    updatePlayer.setSteamid(friend.getFriendsteamid());
+                    updatePlayer.start();
+                }
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return;

@@ -29,7 +29,7 @@ $('#log_out').click(function () {
     }
 })
 
-
+var fromPage;
 var steamid;
 var ownedgames;
 var gameCount;
@@ -41,17 +41,18 @@ var count;
 
 
 $(function () {
-    //页面加载后马上分页加载游戏库
     steamid = $('#steamid').val();
+    fromPage = $('#fromPage').val();
+
+    //1.页面加载后马上分页加载游戏库
     $.ajax({
         type : "get",
         url : "/loadmylib",
-        data : "steamid=" + steamid,
+        data : "steamid=" + steamid+"&fromPage=" + fromPage,
         success : function (result) {
             ownedgames = result[0];
             gameCount = result[1];
             totalPages = result[2];
-            //alert("totalPages="+totalPages);
             gameblock_load(ownedgames,gameCount,currentPage,totalPages);
             pagebar_load(currentPage,totalPages);
             loadpagemsg(currentPage,totalPages);
@@ -62,25 +63,25 @@ $(function () {
         }
     })
 
+    //2.页面加载后马上加载“我喜爱的游戏”版块大图
     $.ajax({
         type : "get",
         url : "/loadmyfavorite",
-        data : "steamid=" + steamid,
+        data : "steamid=" + steamid +"&fromPage=" + fromPage,
         success : function (result) {
             apps = result[0];
             count = result[1];
-            //alert("count="+count);
             loadmyfavorite(apps,count);
         },
         error :function () {
         }
     })
 
-    //更新好友的player信息
+    //3.后台更新好友的player信息
     $.ajax({
         type : "get",
         url : "/updateFriendsPlayer_bg",
-        data : "steamid=" + steamid,
+        data : "steamid=" + steamid +"&fromPage=" + fromPage,
         success : function (result) {
         },
         error : function () {
@@ -88,11 +89,11 @@ $(function () {
         }
     })
 
-    ///更新好友游戏
+    ///4.后台更新好友游戏ownedgame
     $.ajax({
         type : "get",
         url : "/updateFriendsGame_bg",
-        data : "steamid=" + steamid,
+        data : "steamid=" + steamid +"&fromPage=" + fromPage,
         success : function (result) {
         },
         error : function () {
@@ -266,24 +267,25 @@ function loadmyfavorite(apps,count) {
     }
     else if (count == 1){
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456"></li></ol>';
-        divpart += '<div class="carousel-inner"><div class="item"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item"><img alt="/image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div></div>';
     }
     else if (count < 5){
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456" class="active"></li>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
         for (var i = 1; i < count; i++){
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-909456"></li>';
-            divpart += '<div class="item"><img alt="" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
+            divpart += '<div class="item"><img alt="/image/null.png" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
         }
         olpart += '</ol>';
         divpart += '</div>';
     }
     else{
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456" class="active"></li>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
         for (var i = 1; i < 5; i++){
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-909456"></li>';
-            divpart += '<div class="item"><img alt="" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
+            divpart += '<div class="item"><img alt="/image/null.png" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
+            console.log(app[i].pic2)
         }
         olpart += '</ol>';
         divpart += '</div>';

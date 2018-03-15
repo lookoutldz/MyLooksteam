@@ -1,9 +1,11 @@
 package looko.looksteam.demo.dao;
 
 import looko.looksteam.demo.entity.App;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface AppMapper {
     int deleteByPrimaryKey(Integer appid);
 

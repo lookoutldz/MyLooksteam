@@ -44,9 +44,11 @@ public class GetPlayerSummaries {
             player.setAvatarmedium(result.get("avatarmedium").getAsString());
             player.setAvatarfull(result.get("avatarfull").getAsString());
             player.setPersonastate(result.get("personastate").getAsInt());
-            player.setTimecreated(result.get("timecreated").getAsInt());
-            player.setPersonastateflags(result.get("personastateflags").getAsInt());
 
+            if (result.has("personastateflags"))
+            player.setPersonastateflags(result.get("personastateflags").getAsInt());
+            if (result.has("timecreated"))
+                player.setTimecreated(result.get("timecreated").getAsInt());
             if (result.has("realname"))
                 player.setRealname(result.get("realname").getAsString());
             if (result.has("primaryclanid"))

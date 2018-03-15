@@ -3,9 +3,11 @@ package looko.looksteam.demo.dao;
 import looko.looksteam.demo.entity.PlayerAch;
 import looko.looksteam.demo.entity.PlayerAchGameKey;
 import looko.looksteam.demo.entity.PlayerAchKey;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface PlayerAchMapper {
     int deleteByPrimaryKey(PlayerAchKey key);
 

@@ -1,7 +1,9 @@
 package looko.looksteam.demo.controller;
 
 import looko.looksteam.demo.api.ResolveVanityURL;
-import looko.looksteam.demo.controller.threads.*;
+import looko.looksteam.demo.controller.threads.UpdateAppPicManager;
+import looko.looksteam.demo.controller.threads.UpdateFriendsManager;
+import looko.looksteam.demo.controller.threads.UpdatePlayer;
 import looko.looksteam.demo.service.OwnedgameService;
 import looko.looksteam.demo.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +66,7 @@ public class LogInOutController {
             updateFriendsManager.goUpdate(steamid);
         }
 
-        return "redirect:/gamesController?steamid="+steamid;
+        return "redirect:/gamesController?steamid="+steamid+"&fromPage=login";
     }
 
     @RequestMapping("/logoutController")
