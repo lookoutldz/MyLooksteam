@@ -266,26 +266,31 @@ function loadmyfavorite(apps,count) {
         alert("Go and buy a game!");
     }
     else if (count == 1){
+        if (apps[0].pic2 == null)
+            apps[0].pic2 = "image/null.png";
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456"></li></ol>';
-        divpart += '<div class="carousel-inner"><div class="item"><img alt="/image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item"><img alt="image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div></div>';
     }
     else if (count < 5){
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456" class="active"></li>';
         divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
         for (var i = 1; i < count; i++){
+            if (apps[i].pic2 == null)
+                apps[i].pic2 = "image/null.png";
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-909456"></li>';
-            divpart += '<div class="item"><img alt="/image/null.png" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
+            divpart += '<div class="item"><img alt="image/null.png" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
         }
         olpart += '</ol>';
         divpart += '</div>';
     }
     else{
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-909456" class="active"></li>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="image/null.png" src="'+apps[0].pic2+'" /><div class="carousel-caption"><h4>'+apps[0].appname+'</h4></div></div>';
         for (var i = 1; i < 5; i++){
+            if (apps[i].pic2 == null)
+                apps[i].pic2 = "image/null.png";
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-909456"></li>';
-            divpart += '<div class="item"><img alt="/image/null.png" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
-            console.log(app[i].pic2)
+            divpart += '<div class="item"><img alt="image/null.png" src="'+apps[i].pic2+'" /><div class="carousel-caption"><h4>'+apps[i].appname+'</h4></div></div>';
         }
         olpart += '</ol>';
         divpart += '</div>';

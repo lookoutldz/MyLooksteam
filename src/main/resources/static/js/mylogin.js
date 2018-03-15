@@ -150,9 +150,8 @@ function checkout(player, form, btn, remember) {
                 $.cookie("vanityurl", vanityurl);
             }
         }
-        var alarmmsg = $("<div>正在加载个人数据，请稍候...</div>")
+        var alarmmsg = $("<div class=\"col-sm-offset-4 col-sm-8\" style='margin-top: 20px;' id='loadingmsg'>更新个人数据中，请稍候...</div>")
         btn.parent().parent().append(alarmmsg);
-        alert("before submit")
         form.submit();
     }
     else if (visible_status==-1) {
