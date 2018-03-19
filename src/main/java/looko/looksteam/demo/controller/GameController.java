@@ -44,6 +44,6 @@ public class GameController {
         modelMap.addAttribute("steamid", steamid);
         modelMap.addAttribute("appid", appid);
 
-        return "/game";
+        return "game";
     }
 }

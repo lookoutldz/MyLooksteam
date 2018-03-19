@@ -5,7 +5,7 @@
 
 	<groupId>looko.looksteam</groupId>
 	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1</version>
 	<packaging>jar</packaging>
 
 	<name>demo</name>

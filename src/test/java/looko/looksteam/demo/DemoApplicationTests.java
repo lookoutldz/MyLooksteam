@@ -40,13 +40,13 @@ public class DemoApplicationTests {
 	@Autowired
 	private PlayerachService playerachService;
 
-
 	@Test
 	public void contextLoads() {
 
 		System.out.println("contextLoads-start");
 	}
 
+	/*
 	@Test
 	public void test_appUpdate(){
 
@@ -260,4 +260,6 @@ public class DemoApplicationTests {
 
 		UpdateAchManager updateAchManager = new UpdateAchManager();
 	}
+
+	*/
 }
