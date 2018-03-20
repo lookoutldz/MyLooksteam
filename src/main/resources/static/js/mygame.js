@@ -79,18 +79,19 @@ function loadgamepic(piclist, pic_count) {
     var divpart = '';
     var all = '';
     if (pic_count == 0){
-
+        olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-161390"></li></ol>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="/image/null.png" /><div class="carousel-caption"><h4></h4></div></div></div>';
     }
     else if (pic_count == 1){
         olpart += '<ol class="carousel-indicators"><li data-slide-to="0" data-target="#carousel-161390"></li></ol>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/alt.jpg" src="'+piclist[0]+'" /><div class="carousel-caption"><h4></h4></div></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="'+piclist[0]+'" /><div class="carousel-caption"><h4></h4></div></div></div>';
     }
     else{
         olpart += '<ol class="carousel-indicators"><li class="active" data-slide-to="0" data-target="#carousel-161390"></li>';
-        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/alt.jpg" src="'+piclist[0]+'" /><div class="carousel-caption"><h4></h4></div></div>';
+        divpart += '<div class="carousel-inner"><div class="item active"><img alt="/image/null.png" src="'+piclist[0]+'" /><div class="carousel-caption"><h4></h4></div></div>';
         for (var i = 1; i < pic_count; i++){
             olpart += '<li data-slide-to="'+i+'" data-target="#carousel-161390"></li>';
-            divpart += '<div class="item"><img alt="/image/alt.jpg" src="'+piclist[i]+'" /><div class="carousel-caption"><h4></h4></div></div>';
+            divpart += '<div class="item"><img alt="/image/null.png" src="'+piclist[i]+'" /><div class="carousel-caption"><h4></h4></div></div>';
         }
     }
     olpart += '</ol>';

@@ -11,14 +11,15 @@ public class UpdateAppPicManager {
     OwnedgameService ownedgameService = ApplicationContextHelper.getBean(OwnedgameService.class);
 
     /*
-        只更新10个pic
+        只更新5个pic
      */
     public void goUpdate(String steamid){
 
         List<OwnedGame> ownedGames = ownedgameService.getOwnedgames_favorite(steamid);
         if (ownedGames != null && ownedGames.size() > 0){
             UpdateAppPic updateAppPic;
-            for (int i = 0; i < ownedGames.size() && i < 10; i++) {
+            //最多更新5个游戏的pic
+            for (int i = 0; i < ownedGames.size() && i < 5; i++) {
                 updateAppPic = new UpdateAppPic();
                 updateAppPic.setOwnedGame(ownedGames.get(i));
                 updateAppPic.start();
