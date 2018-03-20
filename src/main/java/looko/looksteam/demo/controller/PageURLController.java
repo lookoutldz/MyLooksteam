@@ -15,9 +15,9 @@ public class PageURLController {
 
     @RequestMapping("/")
     public String indexHTML(Model model){
-        Player player = playerService.selectPlayer("76561198367830998");
-        model.addAttribute("player", player);
-        return "index";
+//        Player player = playerService.selectPlayer("76561198367830998");
+//        model.addAttribute("player", player);
+        return "redirect:/login";
     }
 
     @RequestMapping("/login")
